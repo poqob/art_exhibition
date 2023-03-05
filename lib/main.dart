@@ -1,5 +1,5 @@
+import 'package:art_exhibition/screens/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:art_exhibition/screens/entrance/entrance_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
             const AppBarTheme(color: Colors.transparent, elevation: 0.0),
         primarySwatch: Colors.blue,
       ),
-      home: const EntranceScreen(),
+      routes: routes,
+      initialRoute: '/',
     );
   }
 }
