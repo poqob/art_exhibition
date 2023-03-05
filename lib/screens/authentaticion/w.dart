@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LogInForm extends StatefulWidget {
-  final String? data;
-  const LogInForm([this.data, Key? key]) : super(key: key);
+  const LogInForm([Key? key]) : super(key: key);
   @override
   LogInFormState createState() {
     return LogInFormState();
@@ -55,9 +54,7 @@ class LogInFormState extends State<LogInForm> {
             maxLength: 15,
             textEditingController: _textEditingControllerPassword,
           ),
-          SizedBox(
-            child: widget.data != null ? Text(widget.data!) : null,
-          ),
+
           //submit button.
           OutlinedButton(
             style: OutlinedButton.styleFrom(

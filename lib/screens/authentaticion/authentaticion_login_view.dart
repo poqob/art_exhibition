@@ -20,7 +20,6 @@ class LogIn extends StatelessWidget {
   }
 
   Scaffold buildScaffold() {
-    String? data;
     return Scaffold(
       backgroundColor: Constants.logInPageBackround,
       appBar: AppBar(),
@@ -40,7 +39,7 @@ class LogIn extends StatelessWidget {
                   child: Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: context.lowRateWidth),
-                    child: LogInForm(data),
+                    child: const LogInForm(),
                   ),
                 ),
               ],
@@ -50,12 +49,29 @@ class LogIn extends StatelessWidget {
                 child: CircularProgressIndicator(
               color: Constants.color,
             ));
-          } else if (state is AuthenticationAuth) {
-            return Center(
-                child: Text(Authentication.instance.getAuthState.toString()));
+          } else if (state is AuthenticationError) {
+            return AlertDialog(
+              content: const Text("log in failed"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.popAndPushNamed(context, "/login");
+                    },
+                    child: const Text("re-try"))
+              ],
+            );
           } else {
-            data = "failed";
-            return this;
+            //navigate to main screen.
+            return AlertDialog(
+              content: Text(Authentication.instance.getAuthState.toString()),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("re-try"))
+              ],
+            );
           }
         },
       ),
