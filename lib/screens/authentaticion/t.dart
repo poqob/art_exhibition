@@ -38,7 +38,7 @@ class _TextInputState extends State<TextInput> {
       cursorRadius: const Radius.circular(3),
       minLines: 1,
       maxLines: 1,
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Constants.colorTextField),
       showCursor: true,
       cursorColor: Constants.colorTextField,
       decoration: InputDecoration(

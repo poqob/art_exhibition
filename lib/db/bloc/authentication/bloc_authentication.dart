@@ -11,12 +11,15 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     required String password,
   }) async {
     try {
-      emit(AuthenticationAuthing());
-      await Authentication.instance.logIn(username, password);
-      emit(AuthenticationAuth());
+      emit(const AuthenticationAuthing());
+      await Authentication.instance.logIn(username, password).then((value) {
+        value == true
+            ? emit(const AuthenticationAuth())
+            : emit(const AuthenticationError("error"));
+      });
     } catch (e) {
-      AuthenticationError error = state as AuthenticationError;
-      throw Exception(error.message);
+      //AuthenticationError error = state as AuthenticationError;
+      throw Exception(e.toString());
     }
   }
 

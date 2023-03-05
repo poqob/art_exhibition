@@ -1,10 +1,14 @@
 import 'package:art_exhibition/constants/constants.dart';
+import 'package:art_exhibition/db/api/db.dart';
+import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/screens/authentaticion/t.dart';
+import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LogInForm extends StatefulWidget {
-  const LogInForm({super.key});
-
+  final String? data;
+  const LogInForm([this.data, Key? key]) : super(key: key);
   @override
   LogInFormState createState() {
     return LogInFormState();
@@ -17,6 +21,17 @@ class LogInFormState extends State<LogInForm> {
       TextEditingController();
   final TextEditingController _textEditingControllerPassword =
       TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    dbInit();
+  }
+
+  //if db connection is not provided then try to connect to db.
+  Future<void> dbInit() async {
+    if (Db().connection.isClosed) await Db().conn();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,37 +55,30 @@ class LogInFormState extends State<LogInForm> {
             maxLength: 15,
             textEditingController: _textEditingControllerPassword,
           ),
+          SizedBox(
+            child: widget.data != null ? Text(widget.data!) : null,
+          ),
           //submit button.
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-              primary: Constants.colorTextField,
               side: const BorderSide(
                 style: BorderStyle.solid,
-                width: 1.6,
+                width: 3,
                 color: Constants.colorTextField,
               ),
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(8),
+            child: Padding(
+              padding: EdgeInsets.all(context.lowRateWidth),
               child: Text(
-                "submit",
-                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 22),
+                "Log In",
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                try {
-                  if (await db.auth(_textEditingControllerUserName.text,
-                      _textEditingControllerPassword.text)) {
-                    await messagger(context);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content: Text('Wrong username or password entry')),
-                    );
-                  }
-                  // ignore: empty_catches
-                } catch (e) {}
+                context.read<AuthenticationCubit>().auth(
+                    username: _textEditingControllerUserName.text,
+                    password: _textEditingControllerPassword.text);
               }
             },
           )
@@ -78,14 +86,4 @@ class LogInFormState extends State<LogInForm> {
       ),
     );
   }
-}
-
-Future<void> messagger(BuildContext context) async {
-  //true statement
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text('succesfully Logged in'),
-      duration: Duration(milliseconds: 500),
-    ),
-  );
 }
