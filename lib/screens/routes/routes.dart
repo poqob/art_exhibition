@@ -4,5 +4,6 @@ import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   '/': (context) => const EntranceScreen(),
-  '/auth': (context) => const LogIn(),
+  '/login': (context) => const LogIn(),
+  '/signup': (context) => const LogIn(),
 };
