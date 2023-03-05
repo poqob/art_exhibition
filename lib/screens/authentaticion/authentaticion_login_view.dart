@@ -2,8 +2,8 @@ import 'package:art_exhibition/constants/constants.dart';
 import 'package:art_exhibition/db/api/authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/states_authentication.dart';
-import 'package:art_exhibition/screens/authentaticion/w.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/widgets/auth/loginForm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,66 +26,58 @@ class LogIn extends StatelessWidget {
       body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
         listener: (context, state) {},
         builder: (context, state) {
-          if (state is AuthenticationInitial) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                    flex: 1,
-                    child: SvgPicture.asset("assets/images/login.svg")),
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: context.lowRateWidth),
-                    child: const LogInForm(),
-                  ),
-                ),
-              ],
-            );
-          } else if (state is AuthenticationAuthing) {
-            return const Center(
-                child: CircularProgressIndicator(
-              color: Constants.color,
-            ));
-          } else if (state is AuthenticationError) {
-            return AlertDialog(
-              content: const Text("log in failed"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.popAndPushNamed(context, "/login");
-                    },
-                    child: const Text("re-try"))
-              ],
-            );
-          } else {
-            //navigate to main screen.
-            return AlertDialog(
-              content: Text(Authentication.instance.getAuthState.toString()),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("re-try"))
-              ],
-            );
-          }
+          return _stateBuilder(state, context);
         },
       ),
     );
   }
-}
 
-Future<void> scaffoldMessager(BuildContext context, String message,
-    [int durationmultiplier = 1]) async {
-  //true statement
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(message),
-      duration: Duration(milliseconds: 500 * durationmultiplier),
-    ),
-  );
+  Widget _stateBuilder(AuthenticationState state, BuildContext context) {
+    if (state is AuthenticationInitial) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+              flex: 45, child: SvgPicture.asset("assets/images/login.svg")),
+          const Spacer(flex: 5),
+          Expanded(
+            flex: 50,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
+              child: const LogInForm(),
+            ),
+          ),
+        ],
+      );
+    } else if (state is AuthenticationAuthing) {
+      return const Center(
+          child: CircularProgressIndicator(
+        color: Constants.color,
+      ));
+    } else if (state is AuthenticationError) {
+      return AlertDialog(
+        content: const Text("log in failed"),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, "/login");
+              },
+              child: const Text("re-try"))
+        ],
+      );
+    } else {
+      //navigate to main screen.
+      return AlertDialog(
+        content: Text(Authentication.instance.getAuthState.toString()),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("re-try"))
+        ],
+      );
+    }
+  }
 }

@@ -1,8 +1,8 @@
 import 'package:art_exhibition/constants/constants.dart';
 import 'package:art_exhibition/db/api/db.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
-import 'package:art_exhibition/screens/authentaticion/t.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/widgets/auth/textFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
