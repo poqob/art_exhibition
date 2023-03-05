@@ -15,7 +15,7 @@ FloatingActionButton nextButton(
             break;
           case EntrancePages.entrance2:
             //animated push
-            Navigator.popAndPushNamed(context, "/auth");
+            Navigator.popAndPushNamed(context, "/login");
             break;
           default:
 
