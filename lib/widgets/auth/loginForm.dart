@@ -58,6 +58,7 @@ class LogInFormState extends State<LogInForm> {
           //submit button.
           OutlinedButton(
             style: OutlinedButton.styleFrom(
+              backgroundColor: Constants.colorLogInButton,
               side: const BorderSide(
                 style: BorderStyle.solid,
                 width: 4,
@@ -65,10 +66,13 @@ class LogInFormState extends State<LogInForm> {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.all(context.lowRateWidth),
+              padding: const EdgeInsets.all(12),
               child: Text(
                 "Log In",
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium
+                    ?.copyWith(color: Colors.white),
               ),
             ),
             onPressed: () async {

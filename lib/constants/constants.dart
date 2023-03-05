@@ -5,6 +5,8 @@ class Constants {
   static const Color colorTextField = Colors.black;
   static const Color logInPageBackround = Color.fromARGB(255, 222, 222, 222);
   static const String loginSVG = 'assets/images/login.svg';
+  static const String signupSVG = 'assets/images/signup.svg';
+  static const Color colorLogInButton = Color.fromARGB(255, 99, 99, 99);
   static const String entrance0SVG = 'assets/images/entrance0.svg';
   static const String entrance1SVG = 'assets/images/entrance1.svg';
   static const String entrance2SVG = 'assets/images/entrance2.svg';

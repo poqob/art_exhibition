@@ -96,12 +96,14 @@ class LogIn extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Haven’t you any account ?",
+            "Haven't you any account ?",
             style: Theme.of(context).textTheme.labelLarge,
           ),
           TextButton(
             child: const Text("Sign Up !"),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/signup");
+            },
           ),
         ],
       ),
