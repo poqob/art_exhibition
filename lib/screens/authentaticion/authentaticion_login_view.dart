@@ -39,13 +39,20 @@ class LogIn extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-              flex: 45, child: SvgPicture.asset("assets/images/login.svg")),
+              flex: 45,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: context.lowRateWidth * 1.5),
+                child: SvgPicture.asset(Constants.loginSVG),
+              )),
           const Spacer(flex: 5),
           Expanded(
             flex: 50,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
-              child: const LogInForm(),
+              child: Column(
+                children: [const LogInForm(), _toHaveAccount(context)],
+              ),
             ),
           ),
         ],
@@ -72,12 +79,32 @@ class LogIn extends StatelessWidget {
         content: Text(Authentication.instance.getAuthState.toString()),
         actions: [
           TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text("re-try"))
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text("re-try"),
+          ),
         ],
       );
     }
+  }
+
+  Padding _toHaveAccount(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: context.lowRateHeight / 2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Haven’t you any account ?",
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          TextButton(
+            child: const Text("Sign Up !"),
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
   }
 }

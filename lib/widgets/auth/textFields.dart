@@ -47,14 +47,14 @@ class _TextInputState extends State<TextInput> {
           borderSide: const BorderSide(
               color: Constants.colorTextField,
               style: BorderStyle.solid,
-              width: 1),
+              width: 4),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(
               color: Constants.colorTextField,
               style: BorderStyle.solid,
-              width: 2),
+              width: 4),
         ),
         hintText: widget.hintTextt,
         hintStyle: const TextStyle(

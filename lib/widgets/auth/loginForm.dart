@@ -60,7 +60,7 @@ class LogInFormState extends State<LogInForm> {
             style: OutlinedButton.styleFrom(
               side: const BorderSide(
                 style: BorderStyle.solid,
-                width: 3,
+                width: 4,
                 color: Constants.colorTextField,
               ),
             ),
