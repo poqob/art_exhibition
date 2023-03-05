@@ -7,15 +7,16 @@ class Db {
   //Constructor
   //Singleton architecture with factory.
   static final Db _singleton = Db._interval();
-  Db._interval();
+  Db._interval() {
+    connection = PostgreSQLConnection("localhost", 5432, "postgres",
+        username: "postgres", password: "12345");
+  }
   factory Db() {
     return _singleton;
   }
 
   //connection commands
   Future<void> conn() async {
-    connection = PostgreSQLConnection("localhost", 5432, "postgres",
-        username: "postgres", password: "12345");
     await connection.open();
   }
 
@@ -27,6 +28,7 @@ class Db {
     return connection.query(query).then((value) => value);
   }
 }
+
 
   //var d1 = Db();
   //var d2 = Db();

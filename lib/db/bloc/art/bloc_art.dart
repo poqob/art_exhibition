@@ -9,7 +9,7 @@ class ArtCubit extends Cubit<ArtStates> {
 
   Future<void> getArt(Que que) async {
     try {
-      emit(ArtLoading());
+      emit(const ArtLoading());
 
       List<Art> arts = <Art>[];
 
