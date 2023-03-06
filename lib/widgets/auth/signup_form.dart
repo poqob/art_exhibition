@@ -1,7 +1,7 @@
 import 'package:art_exhibition/constants/constants.dart';
 import 'package:art_exhibition/db/api/db.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
-import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/auth/textFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +15,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class SignUpFormState extends State<SignUpForm> {
+  //fields
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _textEditingControllerUserName =
       TextEditingController();
@@ -22,11 +23,22 @@ class SignUpFormState extends State<SignUpForm> {
       TextEditingController();
   final TextEditingController _textEditingControllerRePassword =
       TextEditingController();
+  final TextEditingController _textEditingControllerCountryInput =
+      TextEditingController();
+  final TextEditingController _textEditingControllerCityInput =
+      TextEditingController();
 
+  //variables
+  int? countryId;
+  int? cityId;
+
+  //init state, controlls Db is connected. If not starts connect.
   @override
   void initState() {
     super.initState();
-    dbInit();
+    try {
+      dbInit();
+    } catch (e) {}
   }
 
   //if db connection is not provided then try to connect to db.
@@ -37,21 +49,19 @@ class SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: <Widget>[
-          //text inputs
-          Expanded(
-            child: TextInput(
+    return SingleChildScrollView(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget>[
+            //text inputs
+            TextInput(
                 textInputType: TextInputType.name,
                 formKey: _formKey,
                 hintTextt: "username",
                 maxLength: 15,
                 textEditingController: _textEditingControllerUserName),
-          ),
-          Expanded(
-            child: TextInput(
+            TextInput(
               textInputType: TextInputType.visiblePassword,
               formKey: _formKey,
               hintTextt: "password",
@@ -59,9 +69,7 @@ class SignUpFormState extends State<SignUpForm> {
               maxLength: 15,
               textEditingController: _textEditingControllerPassword,
             ),
-          ),
-          Expanded(
-            child: TextInput(
+            TextInput(
               textInputType: TextInputType.visiblePassword,
               formKey: _formKey,
               hintTextt: "re-password",
@@ -69,60 +77,83 @@ class SignUpFormState extends State<SignUpForm> {
               maxLength: 15,
               textEditingController: _textEditingControllerRePassword,
             ),
-          ),
+            _moteherlandChosem(),
+
+            _signUpButton(context)
+          ],
+        ),
+      ),
+    );
+  }
+
+  @Todo("Dynmaic dropdown menu item will be codded")
+  Padding _moteherlandChosem() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 30),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(),
           Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Spacer(),
-                Expanded(
-                  child: DropdownMenu(
-                    dropdownMenuEntries: [],
-                  ),
-                ),
-                Spacer(),
-                Expanded(
-                  child: DropdownMenu(
-                    dropdownMenuEntries: [],
-                  ),
-                ),
-                Spacer(),
+            child: DropdownMenu(
+              onSelected: (value) => countryId = value,
+              controller: _textEditingControllerCountryInput,
+              label: const Text("Select Country"),
+              dropdownMenuEntries: const [
+                DropdownMenuEntry(value: 1, label: "Turkey"),
+                DropdownMenuEntry(value: 4, label: "Italy"),
               ],
             ),
           ),
-
-          //submit button.
+          const Spacer(),
           Expanded(
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Constants.colorLogInButton,
-                side: const BorderSide(
-                  style: BorderStyle.solid,
-                  width: 4,
-                  color: Constants.colorTextField,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Text(
-                  "Sign Up",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(color: Colors.white),
-                ),
-              ),
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  context.read<AuthenticationCubit>().auth(
-                      username: _textEditingControllerUserName.text,
-                      password: _textEditingControllerPassword.text);
-                }
-              },
+            child: DropdownMenu(
+              onSelected: (value) => cityId = value,
+              controller: _textEditingControllerCityInput,
+              label: const Text("Select City"),
+              dropdownMenuEntries: const [
+                DropdownMenuEntry(value: 1, label: "Istanbul"),
+                DropdownMenuEntry(value: 11, label: "Rome"),
+              ],
             ),
-          )
+          ),
+          const Spacer(),
         ],
       ),
+    );
+  }
+
+  OutlinedButton _signUpButton(BuildContext context) {
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        backgroundColor: Constants.colorLogInButton,
+        side: const BorderSide(
+          style: BorderStyle.solid,
+          width: 4,
+          color: Constants.colorTextField,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Text(
+          "Sign Up",
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(color: Colors.white),
+        ),
+      ),
+      onPressed: () async {
+        if (_formKey.currentState!.validate()) {
+          context.read<AuthenticationCubit>().signUp(
+                username: _textEditingControllerUserName.text,
+                password: _textEditingControllerPassword.text,
+                countryId: countryId!,
+                cityId: cityId!,
+              );
+        }
+      },
     );
   }
 }
