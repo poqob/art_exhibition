@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -8,9 +6,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 13, 13, 13),
       appBar: AppBar(),
-      body: const Center(
-        child: Text("home"),
+      body: Center(
+        child: Text(
+          "home",
+          style: Theme.of(context).textTheme.displayLarge,
+        ),
       ),
     );
   }

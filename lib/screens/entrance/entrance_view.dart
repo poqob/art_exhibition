@@ -1,4 +1,4 @@
-import 'package:art_exhibition/constants/constants.dart';
+import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:art_exhibition/screens/entrance/entrance_route.dart';
 import 'package:art_exhibition/widgets/entrance/next.dart';
 import 'package:art_exhibition/widgets/entrance/sub.dart';
@@ -21,7 +21,8 @@ class _EntranceScreenState extends State<EntranceScreen> {
         children: [
           Expanded(
             flex: 65,
-            child: top(Constants.color, entranceInstance.pageContent.imagePath),
+            child: top(ConstantColors.colorEntranceTheme.getColor,
+                entranceInstance.pageContent.imagePath),
           ),
           Expanded(
             flex: 35,
@@ -30,7 +31,8 @@ class _EntranceScreenState extends State<EntranceScreen> {
           )
         ],
       ),
-      floatingActionButton: nextButton(Constants.color, context, this),
+      floatingActionButton:
+          nextButton(ConstantColors.colorEntranceTheme.getColor, context, this),
     );
   }
 }

@@ -1,12 +1,14 @@
-import 'package:art_exhibition/constants/constants.dart';
+import 'package:art_exhibition/constants/constant_backround_color.dart';
+import 'package:art_exhibition/constants/constant_colors.dart';
+import 'package:art_exhibition/constants/constant_svg.dart';
 import 'package:art_exhibition/db/api/authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/states_authentication.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/auth/loginForm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
@@ -19,9 +21,12 @@ class LogIn extends StatelessWidget {
     );
   }
 
+  @Todo(
+    "i have pixel overflow issue when keyboard appears, i'll take care of it.",
+  )
   Scaffold buildScaffold() {
     return Scaffold(
-      backgroundColor: Constants.logInPageBackround,
+      backgroundColor: ConstantBackroundColors.colorLogin.getColor,
       appBar: AppBar(),
       body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
         listener: (context, state) {},
@@ -43,7 +48,7 @@ class LogIn extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: context.lowRateWidth * 1.5),
-                child: SvgPicture.asset(Constants.loginSVG),
+                child: ConstantSVG.login.getSVG,
               )),
           const Spacer(flex: 5),
           Expanded(
@@ -58,9 +63,9 @@ class LogIn extends StatelessWidget {
         ],
       );
     } else if (state is AuthenticationAuthing) {
-      return const Center(
+      return Center(
           child: CircularProgressIndicator(
-        color: Constants.color,
+        color: ConstantColors.colorEntranceTheme.getColor,
       ));
     } else if (state is AuthenticationError) {
       return AlertDialog(
@@ -80,9 +85,9 @@ class LogIn extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.popAndPushNamed(context, '/home');
             },
-            child: const Text("re-try"),
+            child: const Text("okey"),
           ),
         ],
       );

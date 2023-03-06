@@ -1,6 +1,4 @@
-// ignore: file_names
-
-import 'package:art_exhibition/constants/constants.dart';
+import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:flutter/material.dart';
 
 class TextInput extends StatefulWidget {
@@ -38,33 +36,33 @@ class _TextInputState extends State<TextInput> {
       cursorRadius: const Radius.circular(3),
       minLines: 1,
       maxLines: 1,
-      style: const TextStyle(color: Constants.colorTextField),
+      style: TextStyle(color: ConstantColors.colorTextfield.getColor),
       showCursor: true,
-      cursorColor: Constants.colorTextField,
+      cursorColor: ConstantColors.colorTextfield.getColor,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-              color: Constants.colorTextField,
+          borderSide: BorderSide(
+              color: ConstantColors.colorTextfield.getColor,
               style: BorderStyle.solid,
               width: 4),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-              color: Constants.colorTextField,
+          borderSide: BorderSide(
+              color: ConstantColors.colorTextfield.getColor,
               style: BorderStyle.solid,
               width: 4),
         ),
         hintText: widget.hintTextt,
-        hintStyle: const TextStyle(
-          color: Constants.colorTextField,
+        hintStyle: TextStyle(
+          color: ConstantColors.colorTextfield.getColor,
         ),
         suffixText: widget.suffixTextt,
-        suffixStyle: const TextStyle(
-          color: Constants.colorTextField,
+        suffixStyle: TextStyle(
+          color: ConstantColors.colorTextfield.getColor,
         ),
-        fillColor: Constants.colorTextField,
+        fillColor: ConstantColors.colorTextfield.getColor,
       ),
       controller: widget.textEditingController,
       validator: (value) {

@@ -1,8 +1,8 @@
-import 'package:art_exhibition/constants/constants.dart';
+import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:art_exhibition/db/api/db.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/utilities/todo.dart';
-import 'package:art_exhibition/widgets/auth/textFields.dart';
+import 'package:art_exhibition/widgets/auth/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -127,11 +127,11 @@ class SignUpFormState extends State<SignUpForm> {
   OutlinedButton _signUpButton(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        backgroundColor: Constants.colorLogInButton,
-        side: const BorderSide(
+        backgroundColor: ConstantColors.colorLoginButton.getColor,
+        side: BorderSide(
           style: BorderStyle.solid,
           width: 4,
-          color: Constants.colorTextField,
+          color: ConstantColors.colorTextfield.getColor,
         ),
       ),
       child: Padding(

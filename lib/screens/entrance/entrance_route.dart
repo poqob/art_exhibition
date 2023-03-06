@@ -1,4 +1,4 @@
-import 'package:art_exhibition/constants/constants.dart';
+import 'package:art_exhibition/constants/constant_svg.dart';
 
 enum EntrancePages { entrance0, entrance1, entrance2 }
 
@@ -6,9 +6,9 @@ EntrancePages entranceInstance = EntrancePages.entrance0;
 
 extension ExtensionEntrancePages on EntrancePages {
   static List page = [
-    [Constants.entrance0SVG, "Hello !", "misions " * 50],
-    [Constants.entrance1SVG, "Safety", "guard " * 50],
-    [Constants.entrance2SVG, "Enjoy !", "entartainment " * 20],
+    [ConstantSVG.entrance0.getAdressOfSVG, "Hello !", "misions " * 50],
+    [ConstantSVG.entrance1.getAdressOfSVG, "Safety", "guard " * 50],
+    [ConstantSVG.entrance2.getAdressOfSVG, "Enjoy !", "entartainment " * 20],
   ];
   Entrance get pageContent => Entrance.fromList(page[index]);
 }

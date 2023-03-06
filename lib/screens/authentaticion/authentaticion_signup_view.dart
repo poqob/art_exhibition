@@ -1,6 +1,6 @@
-import 'dart:math';
-
-import 'package:art_exhibition/constants/constants.dart';
+import 'package:art_exhibition/constants/constant_backround_color.dart';
+import 'package:art_exhibition/constants/constant_colors.dart';
+import 'package:art_exhibition/constants/constant_svg.dart';
 import 'package:art_exhibition/db/api/authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/states_authentication.dart';
@@ -8,7 +8,6 @@ import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/widgets/auth/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -19,7 +18,7 @@ class SignUp extends StatelessWidget {
       create: (context) => AuthenticationCubit(),
       child: Scaffold(
         appBar: AppBar(),
-        backgroundColor: Constants.logInPageBackround,
+        backgroundColor: ConstantBackroundColors.colorSignup.getColor,
         body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
           listener: (context, state) {
             print(state);
@@ -46,7 +45,7 @@ Widget _stateBuilder(AuthenticationState state, BuildContext context) {
                 left: context.lowRateWidth,
                 right: context.lowRateWidth,
                 bottom: context.lowRateWidth),
-            child: SvgPicture.asset(Constants.signupSVG),
+            child: ConstantSVG.signup.getSVG,
           ),
         ),
         Expanded(
@@ -70,9 +69,9 @@ Widget _stateBuilder(AuthenticationState state, BuildContext context) {
       ],
     );
   } else if (state is AuthenticationAuthing) {
-    return const Center(
+    return Center(
         child: CircularProgressIndicator(
-      color: Constants.color,
+      color: ConstantColors.colorEntranceTheme.getColor,
     ));
   } else if (state is AuthenticationError) {
     return AlertDialog(
