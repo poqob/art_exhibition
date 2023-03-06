@@ -5,7 +5,6 @@ import 'package:art_exhibition/db/api/authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/states_authentication.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
-import 'package:art_exhibition/widgets/auth/loginForm.dart';
 import 'package:art_exhibition/widgets/auth/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +19,11 @@ class SignUp extends StatelessWidget {
       create: (context) => AuthenticationCubit(),
       child: Scaffold(
         appBar: AppBar(),
+        backgroundColor: Constants.logInPageBackround,
         body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            print(state);
+          },
           builder: (context, state) {
             return _stateBuilder(state, context);
           },
@@ -90,9 +92,9 @@ Widget _stateBuilder(AuthenticationState state, BuildContext context) {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.popAndPushNamed(context, '/home');
           },
-          child: const Text("re-try"),
+          child: const Text("okey"),
         ),
       ],
     );

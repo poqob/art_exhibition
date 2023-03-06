@@ -24,7 +24,9 @@ class LogInFormState extends State<LogInForm> {
   @override
   void initState() {
     super.initState();
-    dbInit();
+    try {
+      dbInit();
+    } catch (e) {}
   }
 
   //if db connection is not provided then try to connect to db.
