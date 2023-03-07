@@ -1,33 +1,44 @@
+import 'package:art_exhibition/db/api/IDb.dart';
+import 'package:art_exhibition/db/api/postgresql.dart';
 import 'package:postgres/postgres.dart';
 
-class Db {
+class Db implements IDb {
   //fields
-  late final PostgreSQLConnection connection;
+  late final IDb db;
 
   //Constructor
   //Singleton architecture with factory.
   static final Db _singleton = Db._interval();
   Db._interval() {
-    connection = PostgreSQLConnection("localhost", 5432, "postgres",
-        username: "postgres", password: "12345");
+    db = PostgreSQL();
   }
   factory Db() {
     return _singleton;
   }
 
   //connection commands
+  @override
   Future<void> conn() async {
-    await connection.open();
+    await db.conn();
   }
 
   //close connection
-  Future<void> connKill() async => await connection.close();
+  @override
+  Future<void> connKill() async => await db.connKill();
 
   // dynamic query
+  @override
   Future<PostgreSQLResult> query(String query) async {
-    return connection.query(query).then((value) => value);
+    return await db.query(query).then((value) => value);
   }
+
+  @override
+  bool get isConnected => db.isConnected;
 }
+
+
+
+
 
 
   //var d1 = Db();
