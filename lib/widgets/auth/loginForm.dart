@@ -30,7 +30,7 @@ class LogInFormState extends State<LogInForm> {
 
   //if db connection is not provided then try to connect to db.
   Future<void> dbInit() async {
-    if (Db().connection.isClosed) await Db().conn();
+    if (!Db().isConnected) await Db().conn();
   }
 
   @override
