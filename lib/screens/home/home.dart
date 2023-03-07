@@ -1,7 +1,10 @@
 import 'package:art_exhibition/constants/constant_colors.dart';
+import 'package:art_exhibition/constants/constant_url.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/utilities/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -16,7 +19,19 @@ class Home extends StatelessWidget {
         child: Column(
           children: [
             _tittle(context),
-            _slider(),
+            //_slider(),
+            FanCarouselImageSlider(
+              imageFitMode: BoxFit.cover,
+              imagesLink: Uris.list,
+              sliderHeight: context.dynamicHeight(0.6),
+              sliderWidth: context.dynamicWidth(1),
+              showArrowNav: false,
+              expandImageHeight: context.dynamicHeight(0.6),
+              expandImageWidth: context.dynamicWidth(0.6),
+              userCanDrag: true,
+              autoPlay: true,
+              isAssets: false,
+            ),
             _categories(),
             _bottomNavigationBar(),
           ],
@@ -35,7 +50,7 @@ class Home extends StatelessWidget {
             style: GoogleFonts.oxygen(
               textStyle: TextStyle(
                 color: Colors.white,
-                fontSize: context.dynamicWidth(0.08),
+                fontSize: context.dynamicWidth(0.065),
               ),
             ),
           ),
@@ -46,9 +61,11 @@ class Home extends StatelessWidget {
 
   Expanded _slider() {
     return Expanded(
-      flex: 70,
-      child: Container(
-        color: ConstantColors.colorLoginButton.getColor,
+      flex: 90,
+      child: FanCarouselImageSlider(
+        imageFitMode: BoxFit.cover,
+        imagesLink: Uris.list,
+        isAssets: false,
       ),
     );
   }
@@ -59,40 +76,51 @@ class Home extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                color: ConstantColors.colorTextfield.getColor,
-              ),
-            ),
+            child: _categoryButton("Museum"),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                color: ConstantColors.colorTextfield.getColor,
-              ),
-            ),
+            child: _categoryButton("Arts"),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                color: ConstantColors.colorTextfield.getColor,
-              ),
-            ),
+            child: _categoryButton("Artists"),
           ),
         ],
       ),
     );
   }
 
-  Expanded _bottomNavigationBar() {
-    return Expanded(
-      flex: 15,
+  Padding _categoryButton(String text) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: Colors.red,
+        decoration: BoxDecoration(
+          color: ConstantColors.colorTextfield.getColor,
+          borderRadius: BorderRadius.circular(21),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(color: Colors.white, fontSize: 25),
+          ),
+        ),
       ),
+    );
+  }
+
+  @Todo("glass morphism will be aplied.")
+  BottomNavigationBar _bottomNavigationBar() {
+    return BottomNavigationBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white,
+      currentIndex: 0,
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "aa"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark_border_outlined), label: "hh"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "bb"),
+      ],
     );
   }
 }
