@@ -28,7 +28,7 @@ class Db implements IDb {
 
   // dynamic query
   @override
-  Future<PostgreSQLResult> query(String query) async {
+  Future<dynamic> query(String query) async {
     return await db.query(query).then((value) => value);
   }
 
