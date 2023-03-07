@@ -1,7 +1,11 @@
 import 'package:art_exhibition/screens/routes/routes.dart';
+import 'package:art_exhibition/utilities/device_info.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  await DeviceInfo.getInfo.then((value) {
+    //print(value.getInfo().data);
+  });
   runApp(const MyApp());
 }
 
