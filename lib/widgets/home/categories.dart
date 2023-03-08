@@ -1,21 +1,20 @@
-
-import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:art_exhibition/utilities/todo.dart';
+import 'package:art_exhibition/widgets/common/glassBox.dart';
 import 'package:flutter/material.dart';
 
-Expanded categories(BuildContext context) {
+Expanded categories(BuildContext context, PageController pageController) {
   return Expanded(
     flex: 20,
     child: Row(
       children: [
         Expanded(
-          child: _categoryButton("Museum", context),
+          child: _categoryButton("Museum", context, pageController),
         ),
         Expanded(
-          child: _categoryButton("Arts", context),
+          child: _categoryButton("Arts", context, pageController),
         ),
         Expanded(
-          child: _categoryButton("Artists", context),
+          child: _categoryButton("Artists", context, pageController),
         ),
       ],
     ),
@@ -23,17 +22,24 @@ Expanded categories(BuildContext context) {
 }
 
 @Todo("i can make it look good.")
-Padding _categoryButton(String text, BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
+Widget _categoryButton(
+    String text, BuildContext context, PageController pageController) {
+  final BorderRadius borderRadius = BorderRadius.circular(20);
+  return glassBox(
+    context: context,
+    width: 100,
+    height: 100,
+    border: borderRadius,
+    blur: 5,
     child: ElevatedButton(
       style: ButtonStyle(
+        elevation: MaterialStateProperty.all<double>(0),
         backgroundColor: MaterialStateProperty.all<Color>(
-          ConstantColors.colorLoginButton.getColor,
+          Colors.transparent,
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: borderRadius,
           ),
         ),
       ),

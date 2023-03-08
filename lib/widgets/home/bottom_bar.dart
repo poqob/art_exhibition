@@ -12,7 +12,7 @@ Expanded bottomBar(BuildContext context) {
       width: context.dynamicWidth(0.35),
       height: context.dynamicHeight(0.15),
       border: BorderRadius.circular(15),
-      blur: 1,
+      blur: 5,
       child: Padding(
         padding: const EdgeInsets.all(2.0),
         child: Row(
@@ -20,6 +20,7 @@ Expanded bottomBar(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             IconButton(
+              color: Colors.white,
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -31,6 +32,7 @@ Expanded bottomBar(BuildContext context) {
               icon: const Icon(Icons.home_outlined),
             ),
             IconButton(
+              color: Colors.white,
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -42,6 +44,7 @@ Expanded bottomBar(BuildContext context) {
               icon: const Icon(Icons.bookmark_outline_outlined),
             ),
             IconButton(
+              color: Colors.white,
               onPressed: () {
                 Navigator.pushNamed(context, '/settings');
               },
