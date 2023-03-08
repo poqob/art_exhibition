@@ -1,5 +1,4 @@
 import 'package:art_exhibition/constants/constant_colors.dart';
-import 'package:art_exhibition/screens/authentaticion/authentaticion_login_view.dart';
 import 'package:art_exhibition/screens/entrance/entrance_route.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/widgets/entrance/next.dart';
@@ -29,56 +28,51 @@ class _EntranceScreenState extends State<EntranceScreen> {
             pageSnapping: true,
             allowImplicitScrolling: true,
             scrollDirection: Axis.horizontal,
-            children: [
-              _page(context, EntrancePages.entrance0),
-              _page(context, EntrancePages.entrance1),
-              _page(context, EntrancePages.entrance2),
-              const LogIn(),
-            ],
+            children: List.generate(
+              EntrancePages.values.length,
+              (index) => _page(
+                context,
+                EntrancePages.values.elementAt(index),
+              ),
+            ),
           ),
-          !isLastPage
-              ? Positioned(
-                  top: 15,
-                  right: 15,
-                  child: TextButton(
-                    child: Text(
-                      "skip",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    onPressed: () {
-                      _controller.animateToPage(2,
-                          duration: Duration(milliseconds: msDuration),
-                          curve: Curves.linear);
+          Positioned(
+            top: 15,
+            right: 15,
+            child: TextButton(
+              child: Text(
+                "skip",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              onPressed: () {
+                _controller.animateToPage(2,
+                    duration: Duration(milliseconds: msDuration),
+                    curve: Curves.linear);
 
-                      setState(() {
-                        entranceInstance = EntrancePages.entrance2;
-                      });
-                    },
-                  ),
-                )
-              : const SizedBox(),
-          !isLastPage
-              ? Positioned(
-                  top: context.dynamicHeight(0.6),
-                  right: 10,
-                  child: SmoothPageIndicator(
-                    controller: _controller, // PageController
-                    count: EntrancePages.values.length,
-                    effect: const WormEffect(), // your preferred effect
-                    onDotClicked: (index) {},
-                  ),
-                )
-              : const SizedBox(),
+                setState(() {
+                  isLastPage = true;
+                });
+              },
+            ),
+          ),
+          Positioned(
+            top: context.dynamicHeight(0.6),
+            right: 10,
+            child: SmoothPageIndicator(
+              controller: _controller, // PageController
+              count: EntrancePages.values.length,
+              effect: const WormEffect(), // your preferred effect
+              onDotClicked: (index) {},
+            ),
+          ),
         ],
       ),
-      floatingActionButton: !isLastPage
-          ? nextButton(
-              context,
-              this,
-              _controller,
-              msDuration,
-            )
-          : const SizedBox(),
+      floatingActionButton: nextButton(
+        context,
+        this,
+        _controller,
+        msDuration,
+      ),
     );
   }
 

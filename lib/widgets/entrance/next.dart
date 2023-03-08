@@ -4,36 +4,28 @@ import 'package:flutter/material.dart';
 
 FloatingActionButton nextButton(BuildContext context, State state,
     PageController controller, int msDuration) {
+  int nextPage;
+  try {
+    nextPage = (controller.page!.toInt() + 1);
+  } catch (e) {
+    nextPage = 1;
+  }
   return FloatingActionButton(
     onPressed: () {
       state.setState(
         () {
-          switch (entranceInstance) {
-            case EntrancePages.entrance0:
-              controller.animateToPage(1,
-                  duration: Duration(milliseconds: msDuration),
-                  curve: Curves.linear);
-              entranceInstance = EntrancePages.entrance1;
-
-              break;
-            case EntrancePages.entrance1:
-              controller.animateToPage(2,
-                  duration: Duration(milliseconds: msDuration),
-                  curve: Curves.linear);
-              entranceInstance = EntrancePages.entrance2;
-              break;
-            case EntrancePages.entrance2:
-              //animated push
-              isLastPage = true;
-              controller.animateToPage(3,
-                  duration: Duration(milliseconds: msDuration),
-                  curve: Curves.linear);
-              //Navigator.popAndPushNamed(context, "/login");
-              break;
-            default:
-
-            //route to logIn screen
+          nextPage = (controller.page!.toInt() + 1);
+          if (nextPage != EntrancePages.values.length) {
+            controller.animateToPage(nextPage,
+                duration: Duration(milliseconds: msDuration),
+                curve: Curves.linear);
+            nextPage + 1 == EntrancePages.values.length
+                ? isLastPage = true
+                : isLastPage = false;
+          } else {
+            Navigator.popAndPushNamed(context, '/login');
           }
+          isLastPage;
         },
       );
     },
@@ -42,9 +34,7 @@ FloatingActionButton nextButton(BuildContext context, State state,
     tooltip: "next",
     child: Center(
       child: Icon(
-        entranceInstance != EntrancePages.entrance2
-            ? Icons.arrow_forward_outlined
-            : Icons.done,
+        !isLastPage ? Icons.arrow_forward_outlined : Icons.done,
         //size: context.lowRateWidth * 2,
       ),
     ),

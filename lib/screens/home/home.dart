@@ -4,9 +4,14 @@ import 'package:art_exhibition/utilities/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +26,7 @@ class Home extends StatelessWidget {
             _categories(),
             _bottomBar(),
             const Spacer(
-              flex: 2,
+              flex: 3,
             ),
           ],
         ),
@@ -39,7 +44,7 @@ class Home extends StatelessWidget {
             style: GoogleFonts.oxygen(
               textStyle: TextStyle(
                 color: Colors.white,
-                fontSize: context.dynamicWidth(0.065),
+                fontSize: context.dynamicWidth(0.07),
               ),
             ),
           ),
@@ -51,7 +56,7 @@ class Home extends StatelessWidget {
   @Todo("Slider package will be added or write one.")
   Expanded _slider() {
     return Expanded(
-      flex: 90,
+      flex: 80,
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -84,6 +89,7 @@ class Home extends StatelessWidget {
     );
   }
 
+  @Todo("i can make it look good.")
   Padding _categoryButton(String text) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -114,8 +120,29 @@ class Home extends StatelessWidget {
     return Expanded(
       flex: 10,
       child: Container(
+        width: context.dynamicWidth(0.5),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15), color: Colors.green),
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.home_outlined),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.bookmark_outline_outlined),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.settings_outlined),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
