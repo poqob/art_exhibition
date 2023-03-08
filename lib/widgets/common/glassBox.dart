@@ -45,7 +45,7 @@ Widget glassBox({
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Colors.white.withOpacity(0.4),
+                  Colors.white.withOpacity(0.2),
                   Colors.white.withOpacity(0.1)
                 ],
               ),
