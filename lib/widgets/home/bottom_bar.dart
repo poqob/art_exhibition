@@ -1,0 +1,60 @@
+import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/utilities/todo.dart';
+import 'package:art_exhibition/widgets/common/glassBox.dart';
+import 'package:flutter/material.dart';
+
+@Todo("glass morphism will be aplied.")
+Expanded bottomBar(BuildContext context) {
+  return Expanded(
+    flex: 10,
+    child: glassBox(
+      context: context,
+      width: context.dynamicWidth(0.35),
+      height: context.dynamicHeight(0.15),
+      border: BorderRadius.circular(15),
+      blur: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    duration: Duration(milliseconds: 300),
+                    content: Text("Navigate to Home (this page)"),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.home_outlined),
+            ),
+            IconButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    duration: Duration(milliseconds: 300),
+                    content: Text("Navigate to Saved Content Page"),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.bookmark_outline_outlined),
+            ),
+            IconButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    duration: Duration(milliseconds: 300),
+                    content: Text("Navigate to Settings Page"),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.settings_outlined),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
