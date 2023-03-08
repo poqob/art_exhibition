@@ -3,6 +3,7 @@ import 'package:art_exhibition/constants/constant_svg.dart';
 enum EntrancePages { entrance0, entrance1, entrance2 }
 
 EntrancePages entranceInstance = EntrancePages.entrance0;
+bool isLastPage = false;
 
 extension ExtensionEntrancePages on EntrancePages {
   static List page = [
