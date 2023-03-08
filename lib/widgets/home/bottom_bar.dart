@@ -43,12 +43,7 @@ Expanded bottomBar(BuildContext context) {
             ),
             IconButton(
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    duration: Duration(milliseconds: 300),
-                    content: Text("Navigate to Settings Page"),
-                  ),
-                );
+                Navigator.pushNamed(context, '/settings');
               },
               icon: const Icon(Icons.settings_outlined),
             ),
