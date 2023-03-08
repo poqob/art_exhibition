@@ -1,6 +1,7 @@
 import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/home/bottom_bar.dart';
-import 'package:art_exhibition/widgets/home/category_button.dart';
+import 'package:art_exhibition/widgets/home/categories.dart';
 import 'package:art_exhibition/widgets/home/slider.dart';
 import 'package:art_exhibition/widgets/home/tittle.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,11 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+@Todo("slidable daily content widget and it's logic will be codded.")
+@Todo('''backround image will be removed.
+      Instead of that some cool animations can be added.
+      dark colors changes sync with slider.''')
+@Todo("Navigations will be codded")
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
