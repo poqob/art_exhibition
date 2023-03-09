@@ -2,19 +2,19 @@ import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/common/glassBox.dart';
 import 'package:flutter/material.dart';
 
-Expanded categories(BuildContext context, PageController pageController) {
+Expanded categories(BuildContext context) {
   return Expanded(
     flex: 20,
     child: Row(
       children: [
         Expanded(
-          child: _categoryButton("Museum", context, pageController),
+          child: _categoryButton("Museum", context),
         ),
         Expanded(
-          child: _categoryButton("Arts", context, pageController),
+          child: _categoryButton("Arts", context),
         ),
         Expanded(
-          child: _categoryButton("Artists", context, pageController),
+          child: _categoryButton("Artists", context),
         ),
       ],
     ),
@@ -22,8 +22,7 @@ Expanded categories(BuildContext context, PageController pageController) {
 }
 
 @Todo("i can make it look good.")
-Widget _categoryButton(
-    String text, BuildContext context, PageController pageController) {
+Widget _categoryButton(String text, BuildContext context) {
   final BorderRadius borderRadius = BorderRadius.circular(20);
   return glassBox(
     context: context,
