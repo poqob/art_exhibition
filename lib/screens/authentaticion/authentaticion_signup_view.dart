@@ -5,24 +5,29 @@ import 'package:art_exhibition/db/api/authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/db/bloc/authentication/states_authentication.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/auth/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
-
+  @Todo("ATENCION debug buton in appbar will be removed.")
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthenticationCubit(),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
+              child: const Text("debug button"))
+        ]),
         backgroundColor: ConstantBackroundColors.colorSignup.getColor,
         body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
-          listener: (context, state) {
-            print(state);
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return _stateBuilder(state, context);
           },
