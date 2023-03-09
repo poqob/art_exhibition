@@ -16,8 +16,15 @@ class EntranceScreen extends StatefulWidget {
 }
 
 class _EntranceScreenState extends State<EntranceScreen> {
-  final PageController _controller = PageController();
+  late final PageController _controller;
   final int msDuration = 600;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,5 +98,11 @@ class _EntranceScreenState extends State<EntranceScreen> {
         )
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
