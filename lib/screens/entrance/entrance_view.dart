@@ -43,25 +43,30 @@ class _EntranceScreenState extends State<EntranceScreen> {
               ),
             ),
           ),
-          Positioned(
-            top: 15,
-            right: 15,
-            child: TextButton(
-              child: Text(
-                "skip",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              onPressed: () {
-                _controller.animateToPage(2,
-                    duration: Duration(milliseconds: msDuration),
-                    curve: Curves.linear);
+          isLastPage
+              ? Positioned(
+                  top: 15,
+                  right: 15,
+                  child: TextButton(
+                    child: Text(
+                      "skip",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      _controller.animateToPage(2,
+                          duration: Duration(milliseconds: msDuration),
+                          curve: Curves.linear);
 
-                setState(() {
-                  isLastPage = true;
-                });
-              },
-            ),
-          ),
+                      setState(() {
+                        isLastPage = true;
+                      });
+                    },
+                  ),
+                )
+              : const SizedBox(),
           Positioned(
             top: context.dynamicHeight(0.6),
             right: 10,
