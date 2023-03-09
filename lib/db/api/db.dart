@@ -1,6 +1,5 @@
 import 'package:art_exhibition/db/api/IDb.dart';
 import 'package:art_exhibition/db/api/postgresql.dart';
-import 'package:postgres/postgres.dart';
 
 class Db implements IDb {
   //fields
