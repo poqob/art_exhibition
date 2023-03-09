@@ -1,4 +1,3 @@
-import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/common/glassBox.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +20,6 @@ Expanded categories(BuildContext context) {
   );
 }
 
-@Todo("i can make it look good.")
 Widget _categoryButton(String text, BuildContext context) {
   final BorderRadius borderRadius = BorderRadius.circular(20);
   return glassBox(
