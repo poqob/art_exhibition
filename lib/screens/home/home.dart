@@ -1,3 +1,6 @@
+import 'package:art_exhibition/db/models/art/model_art.dart';
+import 'package:art_exhibition/screens/home/bloc_daily_content.dart';
+import 'package:art_exhibition/screens/home/states_daily_content.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/home/bottom_bar.dart';
@@ -5,49 +8,117 @@ import 'package:art_exhibition/widgets/home/categories.dart';
 import 'package:art_exhibition/widgets/home/slider.dart';
 import 'package:art_exhibition/widgets/home/tittle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
+@Todo('''
+Sayfanin arka plani animatik bir sekilde kararacak,
+kararma islemi bittiginde yeni arka plan ve icerik current degiskeninde saklanacak,
+kararma suresi kadar bir aydinlanma sureci yasanacak,
+sürec bittiginde döngü halinde animasyon 'contetns' listesini surekli olarak gezecek.
+''')
 class Home extends StatefulWidget {
   Home({super.key});
-  final PageController _pageController = PageController();
+  var logger = Logger();
+  Duration duration = const Duration(seconds: 2);
 
+  List<Art> contents = <Art>[];
+  Art? current;
   @override
   State<Home> createState() => _HomeState();
 }
 
-@Todo("fade in-out animation will be added to backround image")
-@Todo(
-  "the text content will change verticaly via pageview. Simultanesly with backround",
-)
-@Todo("db side of this page will be codded.")
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.duration,
+    );
+    _controller.forward();
+  }
+
+  @override
+  void didUpdateWidget(covariant Home oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.current?.artId != widget.current?.artId) {
+      _controller.forward(from: 1.0);
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 13, 13, 13),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.cover,
-              image: Image.network(
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Girl_with_a_Pearl_Earring.jpg/1200px-Girl_with_a_Pearl_Earring.jpg",
-              ).image),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth * 2),
-          child: Column(
-            children: [
-              tittle(context),
-              slider(
-                context,
-                content(context),
-              ),
-              categories(context, widget._pageController),
-              bottomBar(context),
-              const Spacer(
-                flex: 3,
-              ),
-            ],
-          ),
+    return BlocProvider(
+      create: (context) => DailyContentCubit(),
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 13, 13, 13),
+        body: BlocConsumer<DailyContentCubit, DailyContentStates>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state is DailyLoaded) {
+              try {
+                widget.contents = state.contents;
+                widget.current == null
+                    ? widget.current = widget.contents[2]
+                    : widget.current = widget.current;
+              } catch (e) {
+                widget.logger.e(e.toString());
+              }
+              return Stack(
+                children: [
+                  //fade animation
+                  AnimatedOpacity(
+                    duration: widget.duration,
+                    opacity: _controller.value,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image:
+                                Image.network(widget.current!.imgPath!).image),
+                      ),
+                    ),
+                  ),
+                  //content
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: context.lowRateWidth * 2),
+                    child: Column(
+                      children: [
+                        tittle(context),
+                        slider(
+                          context,
+                          content(context),
+                        ),
+                        categories(context),
+                        bottomBar(context),
+                        const Spacer(
+                          flex: 3,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            } else if (state is DailyInitial) {
+              //start state change
+              context.read<DailyContentCubit>().getContents();
+              return const Center(child: CircularProgressIndicator());
+            }
+            //error situation, loading situation
+            else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
         ),
       ),
     );
@@ -59,7 +130,11 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
       child: SingleChildScrollView(
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              widget.current = widget.contents[3];
+            });
+          },
           style: ButtonStyle(
             overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
             elevation: MaterialStateProperty.all<double>(0),
@@ -75,24 +150,12 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               Text(
-                "İnci Küpeli Karı",
+                widget.current!.artName!,
                 style: TextStyle(
                     color: Colors.white.withOpacity(0.8), fontSize: 40),
               ),
               Text(
-                '''
-        Resim, Hollandalıların 17. yüzyılda portre olması amaçlanmayan bir 'baş' tanımıdır. Egzotik bir elbise, oryantal bir türban ve küpe olarak çok büyük bir inci olduğu düşünülen şey giyen Avrupalı bir kızı tasvir ediyor.[1] 2014'te Hollandalı astrofizikçi Vincent Icke, küpenin malzemesiyle ilgili şüphelerini dile getirdi ve aynasal yansıma, armut şekli ve küpenin büyük boyutu nedeniyle inciden çok cilalı kalay gibi göründüğünü savundu.[4][5]
-                                      
-        İş tuval üzerine yağlı boyadır ve 44,5 cm (17,5 inç) yüksekliğinde ve 39 cm (15 inç) genişliğindedir. Üzerinde "IVMeer" imzası var ama tarih bulunmamaktadır. 1665 yılı civarında boyandığı tahmin edilmektedir.[6]
-                                      
-        Resmin 1994 yılındaki en son restorasyonundan sonra, ince renk şeması ve kızın bakışlarının izleyiciye olan yakınlığı büyük ölçüde geliştirildi.[7] Restorasyon sırasında, bugün biraz alacalı olan koyu arka planın, orijinal olarak derin emaye benzeri bir yeşil olduğu ortaya çıktı.
-                                    
-        Resim, Hollandalıların 17. yüzyılda portre olması amaçlanmayan bir 'baş' tanımıdır. Egzotik bir elbise, oryantal bir türban ve küpe olarak çok büyük bir inci olduğu düşünülen şey giyen Avrupalı bir kızı tasvir ediyor.[1] 2014'te Hollandalı astrofizikçi Vincent Icke, küpenin malzemesiyle ilgili şüphelerini dile getirdi ve aynasal yansıma, armut şekli ve küpenin büyük boyutu nedeniyle inciden çok cilalı kalay gibi göründüğünü savundu.[4][5]
-                                      
-        İş tuval üzerine yağlı boyadır ve 44,5 cm (17,5 inç) yüksekliğinde ve 39 cm (15 inç) genişliğindedir. Üzerinde "IVMeer" imzası var ama tarih bulunmamaktadır. 1665 yılı civarında boyandığı tahmin edilmektedir.[6]
-                                      
-        Resmin 1994 yılındaki en son restorasyonundan sonra, ince renk şeması ve kızın bakışlarının izleyiciye olan yakınlığı büyük ölçüde geliştirildi.[7] Restorasyon sırasında, bugün biraz alacalı olan koyu arka planın, orijinal olarak derin emaye benzeri bir yeşil olduğu ortaya çıktı.
-        ''',
+                widget.current!.content!,
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.8),
                 ),
