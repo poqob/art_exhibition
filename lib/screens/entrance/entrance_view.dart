@@ -43,7 +43,7 @@ class _EntranceScreenState extends State<EntranceScreen> {
               ),
             ),
           ),
-          isLastPage
+          !isLastPage
               ? Positioned(
                   top: 15,
                   right: 15,
