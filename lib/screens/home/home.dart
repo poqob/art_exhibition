@@ -1,6 +1,7 @@
 import 'package:art_exhibition/db/models/art/model_art.dart';
-import 'package:art_exhibition/screens/home/bloc_daily_content.dart';
-import 'package:art_exhibition/screens/home/states_daily_content.dart';
+import 'package:art_exhibition/screens/content_page/single_content_page.dart';
+import 'package:art_exhibition/screens/home/bloc/bloc_daily_content.dart';
+import 'package:art_exhibition/screens/home/bloc/states_daily_content.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/home/bottom_bar.dart';
@@ -134,6 +135,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             setState(() {
               widget.current = widget.contents[3];
             });
+            showDialog(
+              context: context,
+              builder: (context) => SingleContentPage(
+                heading: widget.current!.artName,
+                imagePath: widget.current!.imgPath,
+                text: widget.current!.content,
+              ),
+            );
           },
           style: ButtonStyle(
             overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
