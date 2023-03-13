@@ -67,6 +67,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 
+  @Todo(
+    " bloc_daily_content.dart dosyasi icerisinde getContent() metodu ile DailyLoaded sinifi icerisine veriler depolandi bunlari animasyona dokmek gerek.",
+  )
   BlocConsumer<DailyContentCubit, DailyContentStates> _body() {
     return BlocConsumer<DailyContentCubit, DailyContentStates>(
       listener: (context, state) {},
