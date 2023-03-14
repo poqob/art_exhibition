@@ -1,10 +1,12 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:art_exhibition/screens/content_page/single_content_page.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/utilities/todo.dart';
 import 'package:flutter/material.dart';
 
 @Todo("Create an content model and connect it to db. Then call here asnycly")
-Padding content(BuildContext context, State state, dynamic widget) {
+Padding homeContentWidget(BuildContext context, State state, dynamic widget) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
     child: SingleChildScrollView(
@@ -16,6 +18,7 @@ Padding content(BuildContext context, State state, dynamic widget) {
           showDialog(
             context: context,
             builder: (context) => SingleContentPage(
+              id: [widget.current!.artName, widget.current!.artId],
               heading: widget.current!.artName,
               imagePath: widget.current!.imgPath,
               text: widget.current!.content,
