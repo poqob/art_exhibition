@@ -33,7 +33,6 @@ import 'package:flutter/material.dart';
    -catgory name,id : Array[2]
    -image path : String
    -content text : String
-   -like situation : bool
 
 *- Json class:  
 

@@ -9,6 +9,16 @@ ofcourse there are lots of data structures but i'll apply
 DoublyLinkedArrayList data structure later updates.
 nowly i'll go on with generic list.
 ''')
+@Todo('''
+i codded json.dart, content.dart and this file.
+all of them purpose is  controlling saved contents.
+this classes add and remove methods only affects contents list object.
+But saveToFile calls super's (write) to json method.
+basicly, it turns contents list to map format and writes that to a json file
+which located app path/saved.json 
+
+todo: i'll use this class into ui's like-dislike button and saved content page. 
+''')
 class Saved extends JsonFileOperations {
   //singleton constructor
   Saved._privateConstructor() {
@@ -31,6 +41,7 @@ class Saved extends JsonFileOperations {
     contents.remove(content);
   }
 
+  //works on disposing a page.
   void saveToFile() {
     super.write();
   }
