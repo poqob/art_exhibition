@@ -1,122 +1,108 @@
+// ignore_for_file: must_be_immutable, empty_catches, camel_case_types
+
+import 'package:art_exhibition/data/saved_data/bloc.dart';
+import 'package:art_exhibition/data/saved_data/content.dart';
+import 'package:art_exhibition/data/saved_data/states.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
-import 'package:art_exhibition/utilities/todo.dart';
-import 'package:art_exhibition/widgets/common/glassBox.dart';
 import 'package:art_exhibition/widgets/content/single_content/content.dart';
+import 'package:art_exhibition/widgets/like_button/like_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-@Todo('''like button logic will be codded, depending on that what i'll do?
-1. store liked datas in file as entire? -picked 
-2. store liked datas in files as only db ids? -unnecessary db operations.
+class SingleContentPage extends StatelessWidget {
+  final String heading;
 
-*- file format-json.
-*- single json covers all content or create json for every content?
-*- single json picked.
+  final List id; //name,id
 
-   single json contains related content and 'like:' property.
+  final String imagePath;
 
-   alg:
-   open json
-   read-fetch all content to an saved content class'es data list
-   close json
-   record any changes in ui to saved content class'es data list.
+  final String text;
 
-   #actions
-   -like
-   -dislike
-
-   override new content list into json file when ui disposed.
-
-*- json file:
-   contains all type datas with only that fields.
-
-   -heading : String
-   -catgory name,id : Array[2]
-   -image path : String
-   -content text : String
-
-*- Json class:  
-
-*- methods: 
-   readJson(),
-   writeJson(Content content)=>overrides Content classes List into json file.
-   writes only 
-
-
-*- Content class: static List<dynamic> contents; methods: content.add(dynamic)
-   ui works on this classes list.
-   to prevent any wrong addition operations like adding already added content to json file
-   i'll controll every add() operations according to category name and id number of only array parameter.
-
-
-  ''')
-class SingleContentPage extends StatefulWidget {
-  SingleContentPage({super.key, this.heading, this.imagePath, this.text});
-  String? heading;
-  String? imagePath;
-  String? text;
-
-  @override
-  State<SingleContentPage> createState() => SingleContentPageState();
-}
-
-class SingleContentPageState extends State<SingleContentPage> {
-  //we will bind this to a logic.
-  bool clicked = false;
+  SingleContentPage({
+    super.key,
+    required this.heading,
+    required this.imagePath,
+    required this.text,
+    required this.id,
+  });
   Color backgroundColor = const Color.fromARGB(255, 29, 28, 28);
+  bool? like;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+    Content content = Content(
+      heading,
+      id,
+      imagePath,
+      text,
+    );
+
+    return BlocProvider(
+      create: (context) => SavedCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+          ),
         ),
-      ),
-      backgroundColor: backgroundColor,
-      body: _body(context),
-    );
-  }
-
-  Widget _body(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          content(context, widget.heading, widget.text, widget.imagePath),
-          _likeButton(context),
-        ],
+        backgroundColor: backgroundColor,
+        body: _body(context, content),
       ),
     );
   }
 
-  Positioned _likeButton(BuildContext context) {
-    return Positioned(
-      right: 0,
-      bottom: context.lowRateHeight / 4,
-      child: glassBox(
-        context: context,
-        border: BorderRadius.circular(15),
-        width: context.dynamicHeight(0.07),
-        height: context.dynamicHeight(0.07),
-        blur: 2,
-        child: IconButton(
-          onPressed: () {
-            setState(() {
-              clicked = !clicked;
+  Widget _body(BuildContext context, Content content) {
+    return BlocConsumer<SavedCubit, SavedStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is SavedInitial) {
+          context.read<SavedCubit>().getSavedContents();
+          return const _loading();
+        } else if (state is SavedLoaded) {
+          try {
+            var list = state.content;
+            list.any((element) {
+              if (element.hashCode == content.hashCode) {
+                return like = true;
+              } else {
+                return like = false;
+              }
             });
-          },
-          icon: clicked != true
-              ? const Icon(
-                  Icons.favorite_outline,
-                  color: Colors.white,
-                )
-              : const Icon(
-                  Icons.favorite,
-                  color: Colors.red,
+          } catch (e) {}
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                contentWidget(context, heading, text, imagePath),
+                likeButton(
+                  context,
+                  state,
+                  like,
+                  Content(
+                    heading,
+                    id,
+                    imagePath,
+                    text,
+                  ),
                 ),
-        ),
-      ),
+              ],
+            ),
+          );
+        } else {
+          return const _loading();
+        }
+      },
     );
+  }
+}
+
+class _loading extends StatelessWidget {
+  const _loading();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: CircularProgressIndicator());
   }
 }
