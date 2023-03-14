@@ -4,12 +4,25 @@ import 'package:art_exhibition/data/saved_data/bloc.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
 import 'package:art_exhibition/data/saved_data/states.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/content/single_content/content_widget.dart';
 import 'package:art_exhibition/widgets/like_button/like_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 
+/*
+Single content page  shows only one content.
+like button works can store content in saved.json file or remove content from there.
+it's logic codded in 'lib/data/saved_data/'.
+*/
+
+@Todo('''
+in later updates, i'll expect from myself to code 
+*catagorized multi_content_page
+*new saved contents page 
+*renovating saved content screen which located in lib/screens/saved/saved.dart
+*maybe i can tidy the code. it'd look better.
+''')
 class SingleContentPage extends StatelessWidget {
   final String heading;
 
