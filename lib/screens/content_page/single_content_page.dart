@@ -4,10 +4,11 @@ import 'package:art_exhibition/data/saved_data/bloc.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
 import 'package:art_exhibition/data/saved_data/states.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
-import 'package:art_exhibition/widgets/content/single_content/content.dart';
+import 'package:art_exhibition/widgets/content/single_content/content_widget.dart';
 import 'package:art_exhibition/widgets/like_button/like_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
 class SingleContentPage extends StatelessWidget {
   final String heading;
@@ -54,7 +55,9 @@ class SingleContentPage extends StatelessWidget {
 
   Widget _body(BuildContext context, Content content) {
     return BlocConsumer<SavedCubit, SavedStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        //Logger().d("$state, $like");
+      },
       builder: (context, state) {
         if (state is SavedInitial) {
           context.read<SavedCubit>().getSavedContents();
@@ -62,13 +65,12 @@ class SingleContentPage extends StatelessWidget {
         } else if (state is SavedLoaded) {
           try {
             var list = state.content;
-            list.any((element) {
-              if (element.hashCode == content.hashCode) {
-                return like = true;
-              } else {
-                return like = false;
-              }
-            });
+
+            if (list.contains(content)) {
+              like = true;
+            } else {
+              like = false;
+            }
           } catch (e) {}
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),

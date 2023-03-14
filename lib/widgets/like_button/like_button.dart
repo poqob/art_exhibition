@@ -23,18 +23,14 @@ Positioned likeButton(
         onPressed: () {
           if (state is SavedLoaded) {
             try {
-              var list = state.content;
-              list.any((element) {
-                if (element.hashCode == content.hashCode) {
-                  like = false;
-                  list.remove(element);
-                  return like!;
-                } else {
-                  like = true;
-                  list.add(content);
-                  return like!;
-                }
-              });
+              List<Content> list = state.content;
+              //state.content;
+              if (list.contains(content)) {
+                list.remove(content);
+              } else {
+                list.add(content);
+              }
+
               context.read<SavedCubit>().saveContent(list);
             } catch (e) {}
           }
