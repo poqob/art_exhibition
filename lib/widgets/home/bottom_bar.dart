@@ -38,6 +38,7 @@ Expanded bottomBar(BuildContext context) {
                   content: Text("Navigate to Saved Content Page"),
                 ),
               );
+              Navigator.pushNamed(context, '/saved');
             },
             icon: const Icon(Icons.bookmark_outline_outlined),
           ),
