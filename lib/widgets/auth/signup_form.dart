@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:art_exhibition/db/api/db.dart';
 import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';

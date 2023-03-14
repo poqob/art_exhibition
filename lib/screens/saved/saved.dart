@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches, camel_case_types
+
 import 'package:art_exhibition/data/saved_data/bloc.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
 import 'package:art_exhibition/data/saved_data/states.dart';
@@ -93,9 +95,7 @@ class _SavedScreenState extends State<SavedScreen> {
 }
 
 class _loading extends StatelessWidget {
-  const _loading({
-    super.key,
-  });
+  const _loading();
 
   @override
   Widget build(BuildContext context) {

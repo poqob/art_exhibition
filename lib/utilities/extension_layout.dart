@@ -1,6 +1,7 @@
+// ignore_for_file: camel_case_extensions
+
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_extensions
 extension contextExtension on BuildContext {
   double dynamicWidth(double value) => MediaQuery.of(this).size.width * value;
   double dynamicHeight(double value) => MediaQuery.of(this).size.height * value;

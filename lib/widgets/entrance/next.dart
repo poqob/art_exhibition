@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:art_exhibition/screens/entrance/entrance_route.dart';
 import 'package:flutter/material.dart';

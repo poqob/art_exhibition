@@ -1,7 +1,7 @@
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:flutter/material.dart';
 
-Widget content(
+Widget contentWidget(
   BuildContext context,
   String? heading,
   String? text,

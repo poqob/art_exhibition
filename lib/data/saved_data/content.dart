@@ -27,13 +27,13 @@ class Content {
   //equality operations
 
   @override
-  bool operator ==(covariant Content other) => other.id == id;
+  bool operator ==(covariant Content other) => other.hashCode == hashCode;
 
   @override
   int get hashCode => id[0].length + id[1];
 }/*
   -heading : String
-   -id: catgory name,id; List(2,String-int, growable:false)
+   -id:  name,id; List(2,String-int, growable:false)
    -image path : String
    -content text : String
 */

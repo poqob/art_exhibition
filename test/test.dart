@@ -5,10 +5,6 @@ import 'package:art_exhibition/data/saved_data/content.dart';
 
 void main() async {
   File file = File('D:\\Dosyalar\\Flutter\\art_exhibition\\test\\test.json');
-  Content c = Content(
-      "heading", List.generate(2, (index) => index), "imgPath", "contentText");
-  Content a = Content(
-      "baslik", List.generate(2, (index) => index), "imgPath", "contentText");
   //Saved.instance.contents.clear();
   //Saved.instance.add(c);
   //Saved.instance.add(a);
@@ -26,6 +22,5 @@ void main() async {
     for (var element in response) {
       readedDate.add(Content.fromJson(element));
     }
-    print(readedDate.length);
   });
 }

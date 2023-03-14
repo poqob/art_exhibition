@@ -38,6 +38,7 @@ class JsonFileOperations {
           readedData.add(Content.fromJson(element));
         }
       }
+      // ignore: empty_catches
     } catch (e) {}
     return readedData;
   }

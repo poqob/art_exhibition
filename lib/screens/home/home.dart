@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:art_exhibition/db/models/art/model_art.dart';
 import 'package:art_exhibition/screens/home/bloc/bloc_daily_content.dart';
 import 'package:art_exhibition/screens/home/bloc/states_daily_content.dart';
@@ -5,7 +7,7 @@ import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/home/bottom_bar.dart';
 import 'package:art_exhibition/widgets/home/categories.dart';
-import 'package:art_exhibition/widgets/home/content.dart';
+import 'package:art_exhibition/widgets/home/home_content_widget.dart';
 import 'package:art_exhibition/widgets/home/slider.dart';
 import 'package:art_exhibition/widgets/home/tittle.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +108,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     tittle(context),
                     slider(
                       context,
-                      content(context, this, widget),
+                      homeContentWidget(context, this, widget),
                     ),
                     categories(context),
                     bottomBar(context),

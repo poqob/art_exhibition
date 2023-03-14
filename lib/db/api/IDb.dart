@@ -1,4 +1,4 @@
-import 'package:postgres/postgres.dart';
+// ignore_for_file: file_names
 
 abstract class IDb {
   Future<void> conn();

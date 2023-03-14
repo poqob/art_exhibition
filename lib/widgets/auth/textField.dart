@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:flutter/material.dart';
 
