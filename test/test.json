@@ -1,1 +1,11 @@
-[{"heading":"heading","id":[0,1],"imgPath":"imgPath","contentText":"contentText"},{"heading":"baslik","id":[0,1],"imgPath":"imgPath","contentText":"contentText"}]
+[
+    {
+        "heading": "heading",
+        "id": [
+            0,
+            1
+        ],
+        "imgPath": "imgPath",
+        "contentText": "contentText"
+    }
+]
