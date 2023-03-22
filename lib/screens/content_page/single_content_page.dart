@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, empty_catches, camel_case_types
 
+import 'package:art_exhibition/constants/constant_backround_color.dart';
 import 'package:art_exhibition/data/saved_data/bloc.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
 import 'package:art_exhibition/data/saved_data/states.dart';
@@ -39,7 +40,6 @@ class SingleContentPage extends StatelessWidget {
     required this.text,
     required this.id,
   });
-  Color backgroundColor = const Color.fromARGB(255, 29, 28, 28);
   bool? like;
 
   @override
@@ -54,13 +54,7 @@ class SingleContentPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SavedCubit(),
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-          ),
-        ),
-        backgroundColor: backgroundColor,
+        backgroundColor: ConstantBackroundColors.colorContentPage.getColor,
         body: _body(context, content),
       ),
     );
