@@ -76,39 +76,75 @@ class SingleContentPage extends StatelessWidget {
           context.read<SavedCubit>().getSavedContents();
           return const _loading();
         } else if (state is SavedLoaded) {
-          try {
-            var list = state.content;
+          _likeLogic(state, content);
 
-            if (list.contains(content)) {
-              like = true;
-            } else {
-              like = false;
-            }
-          } catch (e) {}
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                contentWidget(context, heading, text, imagePath),
-                likeButton(
-                  context,
-                  state,
-                  like,
-                  Content(
-                    heading,
-                    id,
-                    imagePath,
-                    text,
-                  ),
-                ),
-              ],
-            ),
+          return _page(
+            heading: heading,
+            text: text,
+            imagePath: imagePath,
+            like: like,
+            id: id,
+            state: state,
           );
         } else {
           return const _loading();
         }
       },
+    );
+  }
+
+  void _likeLogic(SavedLoaded state, Content content) {
+    try {
+      var list = state.content;
+
+      if (list.contains(content)) {
+        like = true;
+      } else {
+        like = false;
+      }
+    } catch (e) {}
+  }
+}
+
+class _page extends StatelessWidget {
+  const _page({
+    super.key,
+    required this.heading,
+    required this.text,
+    required this.imagePath,
+    required this.like,
+    required this.id,
+    required this.state,
+  });
+
+  final String heading;
+  final String text;
+  final String imagePath;
+  final bool? like;
+  final List id;
+  final SavedStates state;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          contentWidget(context, heading, text, imagePath),
+          likeButton(
+            context,
+            state,
+            like,
+            Content(
+              heading,
+              id,
+              imagePath,
+              text,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

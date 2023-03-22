@@ -41,12 +41,7 @@ Widget _categoryButton(String text, BuildContext context) {
         ),
       ),
       onPressed: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            duration: const Duration(milliseconds: 300),
-            content: Text("Navigate to $text"),
-          ),
-        );
+        _func(context, text);
       },
       child: Center(
         child: Text(
@@ -56,4 +51,8 @@ Widget _categoryButton(String text, BuildContext context) {
       ),
     ),
   );
+}
+
+void _func(BuildContext context, String message) async {
+  Navigator.pushNamed(context, '/museums');
 }
