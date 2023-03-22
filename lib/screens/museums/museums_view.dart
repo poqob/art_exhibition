@@ -101,60 +101,67 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _controller,
-        pageSnapping: true,
-        allowImplicitScrolling: true,
-        scrollDirection: Axis.horizontal,
-        children: List.generate(widget.list.length, (index) {
-          Content content = widget.list[index];
-          return Scaffold(
-            body: Stack(
-              children: [
-                SingleContentPage(
-                    heading: content.heading,
-                    imagePath: content.imgPath,
-                    text: content.contentText,
-                    id: content.id),
-                Positioned(
-                  left: 5,
-                  bottom: 10,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _controller.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.linear);
-                    },
-                    child: const Text("debug next"),
-                  ),
-                ),
-                Positioned(
-                  left: 5,
-                  bottom: 45,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _controller.previousPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.linear);
-                    },
-                    child: const Text("debug prev"),
-                  ),
-                ),
-                Positioned(
-                  left: 5,
-                  bottom: 80,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("debug back"),
-                  ),
-                ),
-              ],
-            ),
-          );
-        }),
+      body: Stack(
+        children: [
+          PageView(
+            controller: _controller,
+            pageSnapping: true,
+            allowImplicitScrolling: true,
+            scrollDirection: Axis.horizontal,
+            children: List.generate(widget.list.length, (index) {
+              Content content = widget.list[index];
+              return SingleContentPage(
+                heading: content.heading,
+                imagePath: content.imgPath,
+                text: content.contentText,
+                id: content.id,
+              );
+            }),
+          ),
+          debugButtons()[0],
+          debugButtons()[1],
+          debugButtons()[2],
+        ],
       ),
     );
+  }
+
+  List<Widget> debugButtons() {
+    return <Widget>[
+      Positioned(
+        left: 5,
+        bottom: 10,
+        child: ElevatedButton(
+          onPressed: () {
+            _controller.nextPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.linear);
+          },
+          child: const Text("debug next"),
+        ),
+      ),
+      Positioned(
+        left: 5,
+        bottom: 45,
+        child: ElevatedButton(
+          onPressed: () {
+            _controller.previousPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.linear);
+          },
+          child: const Text("debug prev"),
+        ),
+      ),
+      Positioned(
+        left: 5,
+        bottom: 80,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text("debug back"),
+        ),
+      ),
+    ];
   }
 }

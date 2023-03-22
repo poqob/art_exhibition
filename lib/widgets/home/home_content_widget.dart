@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:art_exhibition/constants/constant_backround_color.dart';
-import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:art_exhibition/screens/content_page/single_content_page.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/utilities/todo.dart';
