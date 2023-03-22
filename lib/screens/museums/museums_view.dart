@@ -4,6 +4,7 @@ import 'package:art_exhibition/db/bloc/museum/states_museum.dart';
 import 'package:art_exhibition/screens/content_page/single_content_page.dart';
 import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/common/loading.dart';
+import 'package:art_exhibition/widgets/debug/debug_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -118,50 +119,11 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
               );
             }),
           ),
-          debugButtons()[0],
-          debugButtons()[1],
-          debugButtons()[2],
+          debugButtons(context, _controller)[0],
+          debugButtons(context, _controller)[1],
+          debugButtons(context, _controller)[2],
         ],
       ),
     );
-  }
-
-  List<Widget> debugButtons() {
-    return <Widget>[
-      Positioned(
-        left: 5,
-        bottom: 10,
-        child: ElevatedButton(
-          onPressed: () {
-            _controller.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.linear);
-          },
-          child: const Text("debug next"),
-        ),
-      ),
-      Positioned(
-        left: 5,
-        bottom: 45,
-        child: ElevatedButton(
-          onPressed: () {
-            _controller.previousPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.linear);
-          },
-          child: const Text("debug prev"),
-        ),
-      ),
-      Positioned(
-        left: 5,
-        bottom: 80,
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text("debug back"),
-        ),
-      ),
-    ];
   }
 }
