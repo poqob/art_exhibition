@@ -6,6 +6,7 @@ import 'package:art_exhibition/data/saved_data/content.dart';
 import 'package:art_exhibition/data/saved_data/states.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/utilities/todo.dart';
+import 'package:art_exhibition/widgets/common/loading.dart';
 import 'package:art_exhibition/widgets/content/single_content/content_widget.dart';
 import 'package:art_exhibition/widgets/like_button/like_button.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ like button works can store content in saved.json file or remove content from th
 it's logic codded in 'lib/data/saved_data/'.
 */
 
+@Todo("like button will be removed from this context but how????")
 @Todo('''
 in later updates, i'll expect from myself to code 
 *catagorized multi_content_page
@@ -68,7 +70,7 @@ class SingleContentPage extends StatelessWidget {
       builder: (context, state) {
         if (state is SavedInitial) {
           context.read<SavedCubit>().getSavedContents();
-          return const _loading();
+          return const Loading();
         } else if (state is SavedLoaded) {
           _likeLogic(state, content);
 
@@ -81,7 +83,7 @@ class SingleContentPage extends StatelessWidget {
             state: state,
           );
         } else {
-          return const _loading();
+          return const Loading();
         }
       },
     );
@@ -102,7 +104,6 @@ class SingleContentPage extends StatelessWidget {
 
 class _page extends StatelessWidget {
   const _page({
-    super.key,
     required this.heading,
     required this.text,
     required this.imagePath,
@@ -140,14 +141,5 @@ class _page extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class _loading extends StatelessWidget {
-  const _loading();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
   }
 }
