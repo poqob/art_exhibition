@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 enum ConstantBackroundColors {
   colorLogin,
   colorSignup,
+  colorContentPage,
 }
 
 extension ExtensionConstantBackroundColors on ConstantBackroundColors {
@@ -12,6 +13,8 @@ extension ExtensionConstantBackroundColors on ConstantBackroundColors {
         return const Color.fromARGB(255, 222, 222, 222);
       case 1:
         return const Color.fromARGB(255, 222, 222, 222);
+      case 2:
+        return const Color.fromARGB(255, 29, 28, 28);
       default:
         return Colors.black;
     }
