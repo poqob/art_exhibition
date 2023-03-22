@@ -22,6 +22,11 @@ class Museum {
     content = museum[6];
     imagePath = museum[7];
   }
+
+  @override
+  String toString() {
+    return "$museumId - $museumName";
+  }
 }
 
 /*
