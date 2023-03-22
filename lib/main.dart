@@ -1,4 +1,4 @@
-import 'package:art_exhibition/screens/routes/routes.dart';
+import 'package:art_exhibition/routes/routes.dart';
 import 'package:art_exhibition/utilities/device_info.dart';
 import 'package:flutter/material.dart';
 
