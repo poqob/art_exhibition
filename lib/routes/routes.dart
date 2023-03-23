@@ -1,3 +1,4 @@
+import 'package:art_exhibition/screens/artists/artist_view.dart';
 import 'package:art_exhibition/screens/authentaticion/authentaticion_login_view.dart';
 import 'package:art_exhibition/screens/authentaticion/authentaticion_signup_view.dart';
 import 'package:art_exhibition/screens/entrance/entrance_view.dart';
@@ -15,4 +16,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   '/settings': (context) => const SettingsScreen(),
   '/saved': (context) => const SavedScreen(),
   '/museums': (context) => const MuseumView(),
+  '/artists': (context) => const ArtistView(),
 };
