@@ -56,7 +56,7 @@ Widget _categoryButton(String text, BuildContext context) {
 void _func(BuildContext context, String route) async {
   var routes = {
     "Museum": '/museums',
-    "Arts": '/home',
+    "Arts": '/arts',
     "Artists": '/artists',
   };
   Navigator.pushNamed(context, routes[route]!);
