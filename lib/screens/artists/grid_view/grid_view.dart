@@ -41,7 +41,7 @@ class Page2 extends StatelessWidget {
           return Body(
             list: state.artists,
           );
-        } else /*MuseumError situation*/ {
+        } else {
           return const LoadingErrorWidget();
         }
       },
