@@ -20,7 +20,14 @@ mixin mi {
         return "select * from artists.allArtists();";
       case "allMuseums":
         return "select * from museums.allMuseums();";
-      case "allPaints":
+      default:
+        return "$artQueryRoot arts.$name();";
+    }
+  }
+}
+/*
+
+ case "allPaints":
         return "select * from arts.allpaints();";
       case "allStatues":
         return "select * from arts.allstatues();";
@@ -28,8 +35,5 @@ mixin mi {
         return "select * from arts.alldecorative();";
       case "allArchitecture":
         return "select * from arts.allarchitecture();";
-      default:
-        return "$artQueryRoot arts.$name();";
-    }
-  }
-}
+        
+         */
