@@ -4,7 +4,7 @@ import 'package:art_exhibition/db/bloc/artists/bloc_artist.dart';
 import 'package:art_exhibition/db/bloc/artists/states_artist.dart';
 import 'package:art_exhibition/db/models/artist/model_artist.dart';
 import 'package:art_exhibition/screens/artists/grid_view/grid.dart';
-import 'package:art_exhibition/screens/artists/loading_error_widget.dart';
+import 'package:art_exhibition/widgets/common/loading_error_widget.dart';
 import 'package:art_exhibition/screens/artists/page_view/page_view.dart';
 import 'package:art_exhibition/widgets/common/loading.dart';
 import 'package:flutter/material.dart';
