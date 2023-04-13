@@ -13,13 +13,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @Todo('''
+  we must to change the logic of the page :( 
+  propper design ought to be like: 
 
-chipsler dinamik oldu değerleri ve kendileri degisebiliyor ancak,
-blok tuketici icini set state ile yenileyemiyorum????
+  user will have controll on chips to change page content
+  dynamically.
 
-kod temizlenecek!
+  our chips are clickable and interactive but our content couldn't 
+  get changes in chips. 
 
+  chips state and content(_body) states can't read changes on each other.  
 
+  proposition: move up the bloc logic on the hierarchy of widget list. 
 ''')
 
 //keeps current art catagory content list to provide to appbar.
@@ -129,6 +134,7 @@ class _ArtsPageViewState extends State<ArtsPageView> {
 
 class Page extends StatelessWidget {
   final Que que;
+
   const Page({
     required this.que,
     super.key,
@@ -146,6 +152,8 @@ class Page extends StatelessWidget {
           return const Loading();
         } else if (state is ArtLoaded) {
           _CurrentContent.list = state.arts;
+          //can we add a listener here that listens _catagory(chips) widgets state?
+
           return gridview(artToContent(state.arts));
         } else {
           return const LoadingErrorWidget();
