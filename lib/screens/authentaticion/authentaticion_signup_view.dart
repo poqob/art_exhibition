@@ -1,9 +1,9 @@
 import 'package:art_exhibition/constants/constant_backround_color.dart';
 import 'package:art_exhibition/constants/constant_colors.dart';
 import 'package:art_exhibition/constants/constant_svg.dart';
-import 'package:art_exhibition/db/api/authentication.dart';
-import 'package:art_exhibition/db/bloc/authentication/bloc_authentication.dart';
-import 'package:art_exhibition/db/bloc/authentication/states_authentication.dart';
+import 'package:art_exhibition/data/db/api/authentication.dart';
+import 'package:art_exhibition/data/db/bloc/authentication/bloc_authentication.dart';
+import 'package:art_exhibition/data/db/bloc/authentication/states_authentication.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:art_exhibition/utilities/todo.dart';
 import 'package:art_exhibition/widgets/auth/signup_form.dart';

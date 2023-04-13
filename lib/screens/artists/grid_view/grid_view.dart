@@ -1,8 +1,8 @@
 import 'package:art_exhibition/constants/constant_backround_color.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
-import 'package:art_exhibition/db/bloc/artists/bloc_artist.dart';
-import 'package:art_exhibition/db/bloc/artists/states_artist.dart';
-import 'package:art_exhibition/db/models/artist/model_artist.dart';
+import 'package:art_exhibition/data/db/bloc/artists/bloc_artist.dart';
+import 'package:art_exhibition/data/db/bloc/artists/states_artist.dart';
+import 'package:art_exhibition/data/db/models/artist/model_artist.dart';
 import 'package:art_exhibition/screens/artists/grid_view/grid.dart';
 import 'package:art_exhibition/widgets/common/loading_error_widget.dart';
 import 'package:art_exhibition/screens/artists/page_view/page_view.dart';

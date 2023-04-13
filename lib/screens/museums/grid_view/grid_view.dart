@@ -1,8 +1,8 @@
 import 'package:art_exhibition/constants/constant_backround_color.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
-import 'package:art_exhibition/db/bloc/museum/bloc_museum.dart';
-import 'package:art_exhibition/db/bloc/museum/states_museum.dart';
-import 'package:art_exhibition/db/models/museum/model_museum.dart';
+import 'package:art_exhibition/data/db/bloc/museum/bloc_museum.dart';
+import 'package:art_exhibition/data/db/bloc/museum/states_museum.dart';
+import 'package:art_exhibition/data/db/models/museum/model_museum.dart';
 import 'package:art_exhibition/screens/museums/grid_view/grid.dart';
 import 'package:art_exhibition/screens/museums/page_view/page_view.dart';
 import 'package:art_exhibition/widgets/common/loading.dart';

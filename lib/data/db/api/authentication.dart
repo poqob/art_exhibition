@@ -1,4 +1,4 @@
-import 'package:art_exhibition/db/api/db.dart';
+import 'package:art_exhibition/data/db/api/db.dart';
 
 class Authentication {
   // making Authentication singleton.

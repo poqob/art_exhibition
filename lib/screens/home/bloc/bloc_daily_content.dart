@@ -1,6 +1,6 @@
-import 'package:art_exhibition/db/api/db.dart';
-import 'package:art_exhibition/db/api/queries.dart';
-import 'package:art_exhibition/db/models/art/model_art.dart';
+import 'package:art_exhibition/data/db/api/db.dart';
+import 'package:art_exhibition/data/db/api/queries.dart';
+import 'package:art_exhibition/data/db/models/art/model_art.dart';
 import 'package:art_exhibition/screens/home/bloc/states_daily_content.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,4 +1,4 @@
-import 'package:art_exhibition/db/models/museum/model_museum.dart';
+import 'package:art_exhibition/data/db/models/museum/model_museum.dart';
 
 abstract class MuseumStates {
   const MuseumStates();

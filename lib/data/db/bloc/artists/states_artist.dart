@@ -1,4 +1,4 @@
-import 'package:art_exhibition/db/models/artist/model_artist.dart';
+import 'package:art_exhibition/data/db/models/artist/model_artist.dart';
 
 abstract class ArtistStates {
   const ArtistStates();

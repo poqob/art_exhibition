@@ -1,9 +1,9 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:art_exhibition/db/api/db.dart';
-import 'package:art_exhibition/db/api/queries.dart';
-import 'package:art_exhibition/db/bloc/museum/states_museum.dart';
-import 'package:art_exhibition/db/models/museum/model_museum.dart';
+import 'package:art_exhibition/data/db/api/db.dart';
+import 'package:art_exhibition/data/db/api/queries.dart';
+import 'package:art_exhibition/data/db/bloc/museum/states_museum.dart';
+import 'package:art_exhibition/data/db/models/museum/model_museum.dart';
 import 'package:bloc/bloc.dart';
 
 //methods are written here according to MuseumStates.

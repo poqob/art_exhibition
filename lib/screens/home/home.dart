@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:art_exhibition/db/models/art/model_art.dart';
+import 'package:art_exhibition/data/db/models/art/model_art.dart';
 import 'package:art_exhibition/screens/home/bloc/bloc_daily_content.dart';
 import 'package:art_exhibition/screens/home/bloc/states_daily_content.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';

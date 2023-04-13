@@ -1,4 +1,4 @@
-import 'package:art_exhibition/db/api/authentication.dart';
+import 'package:art_exhibition/data/db/api/authentication.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,7 @@
-import 'package:art_exhibition/db/api/db.dart';
-import 'package:art_exhibition/db/api/queries.dart';
-import 'package:art_exhibition/db/bloc/art/states_art.dart';
-import 'package:art_exhibition/db/models/art/model_art.dart';
+import 'package:art_exhibition/data/db/api/db.dart';
+import 'package:art_exhibition/data/db/api/queries.dart';
+import 'package:art_exhibition/data/db/bloc/art/states_art.dart';
+import 'package:art_exhibition/data/db/models/art/model_art.dart';
 import 'package:bloc/bloc.dart';
 
 class ArtCubit extends Cubit<ArtStates> {

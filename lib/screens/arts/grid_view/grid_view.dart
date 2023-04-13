@@ -1,9 +1,9 @@
 import 'package:art_exhibition/constants/constant_backround_color.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
-import 'package:art_exhibition/db/api/queries.dart';
-import 'package:art_exhibition/db/bloc/art/bloc_art.dart';
-import 'package:art_exhibition/db/bloc/art/states_art.dart';
-import 'package:art_exhibition/db/models/art/model_art.dart';
+import 'package:art_exhibition/data/db/api/queries.dart';
+import 'package:art_exhibition/data/db/bloc/art/bloc_art.dart';
+import 'package:art_exhibition/data/db/bloc/art/states_art.dart';
+import 'package:art_exhibition/data/db/models/art/model_art.dart';
 import 'package:art_exhibition/screens/arts/grid_view/grid.dart';
 import 'package:art_exhibition/screens/arts/page_view/art_page_view.dart';
 import 'package:art_exhibition/utilities/todo.dart';

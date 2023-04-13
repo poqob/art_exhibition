@@ -1,4 +1,4 @@
-import 'package:art_exhibition/db/api/IDb.dart';
+import 'package:art_exhibition/data/db/api/IDb.dart';
 import 'package:postgres/postgres.dart';
 
 class PostgreSQL implements IDb {
