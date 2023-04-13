@@ -1,3 +1,5 @@
+/// This file contains colors of app as an enum.
+/// In project, almost every enum has get() method via extensions.
 import 'package:flutter/material.dart';
 
 enum ConstantColors {

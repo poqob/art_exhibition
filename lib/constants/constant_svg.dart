@@ -1,3 +1,6 @@
+/// This file contains svg files of app as an enum.
+/// In project, almost every enum has get() method via extensions.
+/// ConstantSVG has getSVG() method that creates and returns svg widget.
 import 'package:flutter_svg/flutter_svg.dart';
 
 enum ConstantSVG {
