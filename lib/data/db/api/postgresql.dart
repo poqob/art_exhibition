@@ -1,3 +1,4 @@
+/// postgresql database instance
 import 'package:art_exhibition/data/db/api/IDb.dart';
 import 'package:postgres/postgres.dart';
 

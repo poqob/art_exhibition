@@ -2,11 +2,10 @@ import 'package:art_exhibition/data/db/api/IDb.dart';
 import 'package:art_exhibition/data/db/api/postgresql.dart';
 
 class Db implements IDb {
-  //fields
+  //db interface variable
   late final IDb db;
 
-  //Constructor
-  //Singleton architecture with factory.
+  //Singleton Constructor architecture with factory.
   static final Db _singleton = Db._interval();
   Db._interval() {
     db = PostgreSQL();
@@ -15,7 +14,7 @@ class Db implements IDb {
     return _singleton;
   }
 
-  //connection commands
+  //open connection
   @override
   Future<void> conn() async {
     await db.conn();
@@ -25,7 +24,7 @@ class Db implements IDb {
   @override
   Future<void> connKill() async => await db.connKill();
 
-  // dynamic query
+  // dynamic query method
   @override
   Future<dynamic> query(String query) async {
     return await db.query(query).then((value) => value);
@@ -35,16 +34,11 @@ class Db implements IDb {
   bool get isConnected => db.isConnected;
 }
 
-
-
-
-
-
-  //var d1 = Db();
-  //var d2 = Db();
-  //print(identical(d1, d2)); output: true
-  //Singleton architecture with Static field with getter.
-  /*
+//var d1 = Db();
+//var d2 = Db();
+//print(identical(d1, d2)); output: true
+//Singleton architecture with Static field with getter.
+/*
   //definition
   Db._privateConstructor();
   static final Db _instance = Db_privateConstructor();

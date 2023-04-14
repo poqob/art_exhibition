@@ -1,3 +1,4 @@
+/// Queries enum for postgresql
 enum Que with mi {
   allPaints,
   allStatues,
