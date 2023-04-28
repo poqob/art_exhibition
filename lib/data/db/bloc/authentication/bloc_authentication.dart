@@ -12,6 +12,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }) async {
     try {
       emit(const AuthenticationAuthing());
+
       await Authentication.instance.logIn(username, password).then((value) {
         value == true
             ? emit(const AuthenticationAuth())

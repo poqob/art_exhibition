@@ -24,10 +24,11 @@ class Authentication {
   Future<bool> logIn(String username, String password) async {
     dynamic res;
     String que;
-    if (Db is PostgreSQL) {
+
+    if (Db().db.runtimeType == PostgreSQL().runtimeType) {
       que = "select users.auth('$username','$password');";
     } else {
-      que = "";
+      que = "select users.auth('$username','$password');";
     }
     await Db().query(que).then(
       (value) {

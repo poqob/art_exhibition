@@ -23,6 +23,13 @@ class LogInFormState extends State<LogInForm> {
       TextEditingController();
 
   @override
+  void dispose() {
+    super.dispose();
+    _textEditingControllerUserName.dispose();
+    _textEditingControllerPassword.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     try {
