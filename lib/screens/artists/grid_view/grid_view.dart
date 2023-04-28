@@ -39,6 +39,7 @@ class Page2 extends StatelessWidget {
           return const Loading();
         } else if (state is ArtistLoaded) {
           return Body(
+            appbarTittle: "Artists",
             list: state.artists,
           );
         } else {
@@ -51,7 +52,9 @@ class Page2 extends StatelessWidget {
 
 class Body extends StatefulWidget {
   final List<Artist> list;
+  final String appbarTittle;
   const Body({
+    required this.appbarTittle,
     required this.list,
     super.key,
   });
@@ -73,6 +76,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(widget.appbarTittle),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

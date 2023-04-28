@@ -39,6 +39,7 @@ class Page extends StatelessWidget {
           return const Loading();
         } else if (state is MuseumLoaded) {
           return Body(
+            appBarTittle: "Museums",
             list: museumToContent(state.museums),
           );
         } else {
@@ -51,7 +52,9 @@ class Page extends StatelessWidget {
 
 class Body extends StatefulWidget {
   final List<Content> list;
+  final String appBarTittle;
   const Body({
+    required this.appBarTittle,
     required this.list,
     super.key,
   });
@@ -73,6 +76,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(widget.appBarTittle),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
