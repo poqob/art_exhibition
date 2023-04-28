@@ -2,14 +2,9 @@ import 'package:art_exhibition/screens/settings/options/OptionAccountSettingsCha
 import 'package:art_exhibition/screens/settings/options/OptionAccountSettingsChangeUsername.dart';
 import 'package:flutter/material.dart';
 
-class AccountSettingsView extends StatefulWidget {
+class AccountSettingsView extends StatelessWidget {
   const AccountSettingsView({super.key});
 
-  @override
-  State<AccountSettingsView> createState() => _AccountSettingsViewState();
-}
-
-class _AccountSettingsViewState extends State<AccountSettingsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +20,8 @@ class _AccountSettingsViewState extends State<AccountSettingsView> {
       ),
       body: Column(
         children: [
-          changePassword(context),
           changeUsername(context),
+          changePassword(context),
         ],
       ),
     );
