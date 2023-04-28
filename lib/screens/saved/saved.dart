@@ -3,13 +3,18 @@
 import 'package:art_exhibition/data/saved_data/bloc.dart';
 import 'package:art_exhibition/data/saved_data/content.dart';
 import 'package:art_exhibition/data/saved_data/states.dart';
+import 'package:art_exhibition/utilities/design.dart';
 import 'package:art_exhibition/utilities/extension_layout.dart';
-import 'package:art_exhibition/utilities/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-@Todo(
-    "it is only an example page. i am going to code proper saved content page.")
+@Design("""
+  *gridview tüm bileşenler savruk bir şekilde burada bulunsun.
+  *birisine tiklayinca sira sayfalar gibi çalissin.
+
+
+
+""")
 class SavedScreen extends StatefulWidget {
   const SavedScreen({super.key});
 

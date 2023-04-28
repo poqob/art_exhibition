@@ -21,14 +21,13 @@ class SettingsScreen extends StatelessWidget {
                 vertical: context.dynamicWidth(0.05)),
             child: ListTile(
               title: Text(
-                "Account Setting",
+                "Account Settings",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              trailing:
+              trailing: const Icon(Icons.person),
+              subtitle:
                   Text("logged as ${Authentication.instance.getUsername}"),
-              subtitle: const Text("account info..."),
               hoverColor: Colors.white60,
-              leading: const Icon(Icons.person),
               onTap: () {},
             ),
           ),
