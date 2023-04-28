@@ -18,6 +18,7 @@ class Authentication {
   //fields for login situation
   String? _username;
   String? _password;
+  int? _userID;
   bool? _authState = false;
 
   // login method
@@ -66,6 +67,26 @@ class Authentication {
         _password = password;
       },
     );
+
+    _userID = await _getUserID();
+  }
+
+  //get user id method, called in constructor after correcting name and password.
+  Future<int> _getUserID() async {
+    dynamic res = -1;
+    String que;
+    if (Db is PostgreSQL) {
+      que =
+          "select user_id from users.users where user_name='$_username' and user_password='$_password';";
+    } else {
+      que = "";
+    }
+    await Db().query(que).then(
+      (value) {
+        res = value;
+      },
+    );
+    return res;
   }
 }
 
@@ -74,4 +95,5 @@ extension ExtensionAuth on Authentication {
   String? get getUsername => _authState == true ? _username : null;
   String? get getPassword => _authState == true ? _password : null;
   bool? get getAuthState => _authState;
+  int? get getUserID => _userID;
 }
