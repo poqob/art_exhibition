@@ -36,6 +36,7 @@ class LogIn extends StatelessWidget {
     );
   }
 
+  // call sub widgets according to AuthenticationState
   Widget _stateBuilder(AuthenticationState state, BuildContext context) {
     if (state is AuthenticationInitial) {
       return initView(context);

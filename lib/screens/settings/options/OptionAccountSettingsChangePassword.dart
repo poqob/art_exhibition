@@ -1,3 +1,4 @@
+import 'package:art_exhibition/screens/settings/screens/ChangePasswordView.dart';
 import 'package:art_exhibition/utilities/todo.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,11 @@ Widget changePassword(BuildContext context) {
       style: Theme.of(context).textTheme.titleLarge,
     ),
     hoverColor: Colors.white60,
-    onTap: () {},
+    onTap: () {
+      showDialog(
+        context: context,
+        builder: (context) => const ChangePasswordView(),
+      );
+    },
   );
 }
