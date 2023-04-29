@@ -1,7 +1,16 @@
 import 'package:art_exhibition/routes/routes.dart';
 import 'package:art_exhibition/utilities/device_info.dart';
+import 'package:art_exhibition/utilities/todo.dart';
 import 'package:flutter/material.dart';
 
+@Todo("""
+Issues: 
+1- arts screen state update problem: state of arts view contex must update itself after selecting chips! 
+2- in Settings view, password and username change pages not done yet!
+3- 
+
+
+""")
 void main() async {
   await DeviceInfo.getInfo.then((value) {
     //print(value.getInfo().data);
