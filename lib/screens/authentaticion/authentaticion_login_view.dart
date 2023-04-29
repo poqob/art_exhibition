@@ -1,12 +1,11 @@
 import 'package:art_exhibition/constants/constant_backround_color.dart';
-import 'package:art_exhibition/constants/constant_colors.dart';
-import 'package:art_exhibition/constants/constant_svg.dart';
-import 'package:art_exhibition/data/db/api/authentication.dart';
 import 'package:art_exhibition/data/db/bloc/authentication/bloc_authentication.dart';
 import 'package:art_exhibition/data/db/bloc/authentication/states_authentication.dart';
-import 'package:art_exhibition/utilities/extension_layout.dart';
+import 'package:art_exhibition/screens/authentaticion/widgets/l_Initt.dart';
+import 'package:art_exhibition/screens/authentaticion/widgets/l_error.dart';
+import 'package:art_exhibition/screens/authentaticion/widgets/l_showAlert.dart';
 import 'package:art_exhibition/utilities/todo.dart';
-import 'package:art_exhibition/widgets/auth/loginForm.dart';
+import 'package:art_exhibition/widgets/common/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,79 +38,14 @@ class LogIn extends StatelessWidget {
 
   Widget _stateBuilder(AuthenticationState state, BuildContext context) {
     if (state is AuthenticationInitial) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-              flex: 45,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: context.lowRateWidth * 1.5),
-                child: ConstantSVG.login.getSVG,
-              )),
-          const Spacer(flex: 5),
-          Expanded(
-            flex: 50,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: context.lowRateWidth),
-              child: Column(
-                children: [const LogInForm(), _toHaveAccount(context)],
-              ),
-            ),
-          ),
-        ],
-      );
+      return initView(context);
     } else if (state is AuthenticationAuthing) {
-      return Center(
-          child: CircularProgressIndicator(
-        color: ConstantColors.colorEntranceTheme.getColor,
-      ));
+      return const Loading();
     } else if (state is AuthenticationError) {
-      return AlertDialog(
-        content: const Text("log in failed"),
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.popAndPushNamed(context, "/login");
-              },
-              child: const Text("re-try"))
-        ],
-      );
+      return errorView(context);
     } else {
       //navigate to main screen.
-      return AlertDialog(
-        content: Text(Authentication.instance.getAuthState.toString()),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.popAndPushNamed(context, '/home');
-            },
-            child: const Text("okey"),
-          ),
-        ],
-      );
+      return showAlert(context);
     }
-  }
-
-  Padding _toHaveAccount(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: context.lowRateHeight / 2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Haven't you any account ?",
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          TextButton(
-            child: const Text("Sign Up !"),
-            onPressed: () {
-              Navigator.popAndPushNamed(context, "/signup");
-            },
-          ),
-        ],
-      ),
-    );
   }
 }
