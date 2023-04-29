@@ -11,15 +11,25 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Change password",
-          style: Theme.of(context).textTheme.headlineSmall,
+      appBar: _appbar(context),
+      body: Center(
+        child: Text(
+          "change password",
+          style: Theme.of(context).textTheme.displaySmall,
         ),
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-        ),
+      ),
+    );
+  }
+
+  AppBar _appbar(BuildContext context) {
+    return AppBar(
+      title: Text(
+        "Change password",
+        style: Theme.of(context).textTheme.headlineSmall,
+      ),
+      leading: IconButton(
+        onPressed: () => Navigator.pop(context),
+        icon: const Icon(Icons.arrow_back, color: Colors.black),
       ),
     );
   }
