@@ -10,50 +10,52 @@
 
 #  Entrance
 
-![Screenshot](.\screenshots\entrance0.png) ![Screenshot](.\screenshots\entrance1.png) ![Screenshot](.\screenshots\entrance2.png)
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/entrance0.png) ![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/entrance1.png)
+
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/entrance2.png)
 
 #  Login & Signup
-![Screenshot](.\screenshots\login.png)      ![Screenshot](.\screenshots\signup_debug.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/login.png)     ![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/signup_debug.png)
 
 
 # Home
-![Screenshot](.\screenshots\main.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/main.png)  
 
 # Museums
                            **gridview**
-![Screenshot](.\screenshots\museums_gridview.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/museums_gridview.png)  
 
                         **pageview**
-![Screenshot](.\screenshots\museums_pageview_debug.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/museums_pageview_debug.png) 
 
 
 # Arts
 
                            **gridview**
-![Screenshot](.\screenshots\arts_gridview_debug.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/arts_gridview_debug.png) 
 
                            **gridview2**
-![Screenshot](.\screenshots\arts_gridview2.png)
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/arts_gridview2.png) 
 
                            **pageview**
-![Screenshot](.\screenshots\arts_pageview_debug.png)
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/arts_pageview_debug.png) 
 # Artists
                            **gridview**
-![Screenshot](.\screenshots\artists_gridview_debug.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/artists_gridview_debug.png) 
 
                            **pageview**
-![Screenshot](.\screenshots\artists_pageview_debug.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/artists_pageview_debug.png) 
 
 
 # Saved Contents
 
-![Screenshot](.\screenshots\savedcontents_gridview_debug.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/savedcontents_gridview_debug.png) 
 
 
 # Settings
 
                            **settings**
-![Screenshot](.\screenshots\settings.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/settings.png) 
 
                            **settings-account**
-![Screenshot](.\screenshots\settings_account.png) 
+![Alt Text](https://github.com/poqob/art_exhibition/blob/master/screenshots/settings_account.png) 
